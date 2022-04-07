@@ -8,35 +8,37 @@
     <link rel="stylesheet" href="./stylesheets/main.scss">
 </head>
 <body>
-    <header class="header" id="main">
+    <header class="header container" id="header">
         <div class="header__logo logo">
-            <div class="header__logo-title">Cozy House</div>
-            <div class="header__logo-subtitle">Shelter for pets in Boston</div>
+            <div class="header__logo-title logo__title logo__title--color-primary">Cozy House</div>
+            <div class="header__logo-subtitle logo__subtitle logo__subtitle--color-primary">Shelter for pets in Boston</div>
         </div>
         <nav class="header__nav">
-            <ul>
-                <li class="header__nav-items"><a class="link header_link header__link--active" href="#">About the shelter</a></li>
-                <li class="header__nav-items"><a class="link header_link" href="#">Our pets</a></li>
-                <li class="header__nav-items"><a class="link header_link" href="#">Help the shelter</a></li>
-                <li class="header__nav-items"><a class="link header_link" href="#">Contacts</a></li>
+            <ul class="header__nav-items">
+                <li class="header__nav-item header__nav-item--active"><a class="header_link link" href="#">About the shelter</a></li>
+                <li class="header__nav-item"><a class="header_link link" href="#">Our pets</a></li>
+                <li class="header__nav-item"><a class="header_link link" href="#">Help the shelter</a></li>
+                <li class="header__nav-item"><a class="header_link link" href="#">Contacts</a></li>
             </ul>
         </nav>
     </header>
     <main class="main" id="main">
         <section class="not-only" id="not-only">
-            <div class="not-only__wrapper">
-                <h1 class="title not-only__title">
-                    Not only people need a house
-                </h1>
-                <p class="description not-only__description">
-                    We offer to give a chance to a little and nice puppy with an extremely wide and open heart. He or she will love you more than anybody else in the world, you will see! 
-                </p>
-                <button class="button button__fill">
-                    Make a friend
-                </button>
-            </div>
-            <div class="not-only__wrapper">
-                <img class="not-only__image" src="#" alt="Dog image">
+            <div class="container">
+                <div class="not-only__wrapper">
+                    <h1 class="title not-only__title">
+                        Not only people need a house
+                    </h1>
+                    <p class="description not-only__description">
+                        We offer to give a chance to a little and nice puppy with an extremely wide and open heart. He or she will love you more than anybody else in the world, you will see! 
+                    </p>
+                    <button class="button button__fill">
+                        Make a friend
+                    </button>
+                </div>
+                <div class="not-only__wrapper">
+                    <img class="not-only__image" src="/src/assets/images/start-screen-puppy.png" alt="Dog image">
+                </div>
             </div>
         </section>
         <section class="about" id="about">

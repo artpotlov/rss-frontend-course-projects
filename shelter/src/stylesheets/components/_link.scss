@@ -1,0 +1,14 @@
+@use '../abstracts/color';
+@use '../abstracts/type';
+
+.link {
+    @extend %paragraph-l;
+    text-decoration: none;
+    color: color.$dark-l;
+    &:hover {
+        color: color.$dark-3xl;
+    }
+    &--active {
+        color: color.$dark-3xl;
+    }
+}

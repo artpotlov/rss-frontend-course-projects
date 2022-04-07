@@ -1,3 +1,24 @@
-body {
-    background-color: antiquewhite;
+
+@forward 'base/normalize';
+@forward 'layout/header';
+@forward 'layout/not-only';
+
+html {
+    box-sizing: border-box;
+}
+
+* {
+    box-sizing: border-box;
+    &::before {
+        box-sizing: border-box;
+    }
+    &::after {
+        box-sizing: border-box;
+    }
+}
+
+.container {
+    width: min(1280px);
+    margin-inline: auto;
+    padding-inline: 40px;
 }

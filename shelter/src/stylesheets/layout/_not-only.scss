@@ -1,0 +1,38 @@
+@use '../abstracts/color';
+@use '../abstracts/type';
+@forward '../components/button';
+
+.not-only {
+    position: relative;
+    top: -120px;
+    @extend %start-screen;
+
+    .container {
+        display: grid;
+        grid-template-columns: 460px 1fr;
+        grid-column-gap: 42px;
+        align-items: end;
+        height: 908px;
+        border: 1px solid red;
+    }
+    &__wrapper:nth-child(1) {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 42px;
+        margin-bottom: 243px;
+    }
+    &__title {
+        width: 310px;
+        color: color.$light-xl;
+        @extend %h1;
+    }
+    &__description {
+        color: color.$dark-s;
+        @extend %paragraph-l;
+    }
+
+    &__image {
+        display: block;
+    }
+}

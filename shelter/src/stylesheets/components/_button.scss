@@ -1,0 +1,26 @@
+@use '../abstracts/color';
+@use '../abstracts/type';
+
+.button {
+    padding: 15px 45px;
+    border: none;
+    border-radius: 100px;
+    cursor: pointer;
+    color: color.$dark-3xl;
+    transition: background-color .3s;
+
+    @extend %button;
+
+    &__fill {
+        background-color: color.$primary;
+    }
+
+    &__outline {
+        background: none;
+        border: 2px solid color.$primary-light;
+    }
+
+    &:hover {
+        background-color: color.$primary-light;
+    }
+}

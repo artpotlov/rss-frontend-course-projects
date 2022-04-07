@@ -1,0 +1,23 @@
+@use '../abstracts/color';
+@use '../abstracts/type';
+
+.logo__title {
+    @extend %logo-title;
+    &--color-primary {
+        color: color.$primary;
+    }
+    &--color-secondary {
+        color: color.$dark-l;
+    }
+}
+
+.logo__subtitle {
+    @extend %logo-subtitle;
+    padding-top: 10px;
+    &--color-primary {
+        color: color.$light-xl;
+    }
+    &--color-secondary {
+        color: color.$dark-l;
+    }
+}
