@@ -13,7 +13,6 @@
         grid-column-gap: 42px;
         align-items: end;
         height: 908px;
-        border: 1px solid red;
     }
     &__wrapper:nth-child(1) {
         display: flex;
@@ -25,11 +24,10 @@
     &__title {
         width: 310px;
         color: color.$light-xl;
-        @extend %h1;
+        
     }
     &__description {
         color: color.$dark-s;
-        @extend %paragraph-l;
     }
 
     &__image {
