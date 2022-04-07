@@ -1,3 +1,14 @@
 @use '../abstracts/color';
 @use '../abstracts/type';
 
+.title {
+    @extend %h3;
+
+    color: color.$dark-l;
+}
+
+.description {
+    @extend %paragraph-l;
+
+    color: color.$dark-xl;
+}
