@@ -20,6 +20,13 @@
         border: 2px solid color.$primary-light;
     }
 
+    &__round {
+        padding: 0;
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+    }
+
     &:hover {
         background-color: color.$primary-light;
     }
