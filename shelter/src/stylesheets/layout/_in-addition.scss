@@ -1,0 +1,58 @@
+@use '../abstracts/icon';
+@use '../abstracts/color';
+@use '../abstracts/type';
+
+.in-addition {
+    background-color: color.$light-l;
+    .container {
+        display: grid;
+        grid-template-columns: repeat(2, auto);
+        grid-column-gap: 30px;
+        justify-content: center;
+        align-items: center;
+        padding: 80px 0 100px 0;
+    }
+
+    &__wrapper:nth-child(2) {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 380px;
+    }
+
+    &__image {
+        display: block;
+    }
+
+    &__title {
+        width: 300px;
+    }
+
+    &__name-bank {
+        @extend %h5;
+        color: color.$dark-l;
+    }
+
+    &__link {
+        @extend %h4;
+        color: color.$dark-l;
+        text-decoration: none;
+        padding: 10px 15px;
+        background-color: color.$primary;
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        width: fit-content;
+        border-radius: 9px;
+    }
+
+    &__icon {
+        width: 30px;
+        height: 23px;
+    }
+
+    &__caption {
+        @extend %paragraph-s;
+        color: color.$dark-m;
+    }
+}

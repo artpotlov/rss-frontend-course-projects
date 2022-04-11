@@ -1,0 +1,13 @@
+@use '../base/icon-source';
+
+@each $name, $source in icon-source.$icons {
+    .#{$name} {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        background-image: url($source);
+        background-position: center center;
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+}

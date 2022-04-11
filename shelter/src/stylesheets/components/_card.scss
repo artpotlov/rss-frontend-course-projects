@@ -1,0 +1,31 @@
+@use '../abstracts/color';
+@use '../abstracts/type';
+@forward '../components/button';
+
+.pet__card {
+    width: 270px;
+    height: 435px;
+    padding-bottom: 30px;
+    background-color: color.$light-s;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+    border-radius: 9px;
+    transition: all .3s;
+
+    &-image {
+        display: block;
+        border-radius: 9px 9px 0 0;
+    }
+
+    &-name {
+        @extend %h4;
+        color: color.$dark-l;
+    }
+
+    &:hover {
+        background-color: color.$light-xl;
+        box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
+    }
+}
