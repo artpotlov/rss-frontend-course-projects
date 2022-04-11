@@ -1,0 +1,29 @@
+@use '../abstracts/color';
+@use '../abstracts/type';
+@forward '../components/card';
+@forward '../components/text-block';
+@forward '../components/pagination';
+
+main {
+    background-color: color.$light-l;
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 60px;
+        padding: 80px 0 100px 0;
+    }
+}
+
+.pet {
+    &__title {
+        text-align: center;
+    }
+
+    &__cards {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-column-gap: 40px;
+        grid-row-gap: 30px;
+    }
+}

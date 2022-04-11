@@ -1,0 +1,12 @@
+@use '../abstracts/color';
+@forward '../components/logo';
+@forward '../components/header-nav-2';
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 35px;
+    height: 120px;
+    background-color: color.$light-xl;
+}

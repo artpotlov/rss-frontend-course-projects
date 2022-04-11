@@ -1,0 +1,23 @@
+@use '../abstracts/color';
+@forward '../components/link';
+
+.header__nav-items {
+    display: flex;
+    gap: 35px;
+    list-style: none;
+
+    .header__nav-item--active {
+        border-bottom: 3px solid color.$primary;
+        &>.header_link {
+            color: color.$dark-3xl;
+        }
+    }
+
+    .header_link {
+        color: color.$dark-l;
+        transition: color .3s;
+        &:hover {
+            color: color.$dark-3xl;
+        }
+    }
+}
