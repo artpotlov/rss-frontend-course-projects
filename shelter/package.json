@@ -4,7 +4,7 @@
   "description": "Shelter Project",
   "scripts": {
     "clean": "rm -rf .parcel-cache dist",
-    "dev": "parcel src/index.html --open",
+    "dev": "parcel src/index.html",
     "build": "parcel build src/index.html"
   },
   "author": "Artem Potlov",
