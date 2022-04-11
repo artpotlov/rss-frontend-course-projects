@@ -44,6 +44,11 @@
         gap: 15px;
         width: fit-content;
         border-radius: 9px;
+        transition: all .3s;
+
+        &:hover {
+            background-color: color.$primary-light;
+        }
     }
 
     &__icon {

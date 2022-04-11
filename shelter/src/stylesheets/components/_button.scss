@@ -2,6 +2,7 @@
 @use '../abstracts/type';
 
 .button {
+    text-decoration: none;
     padding: 15px 45px;
     border: none;
     border-radius: 100px;
@@ -26,6 +27,12 @@
 
         &:hover {
             background: none !important; 
+        }
+    }
+
+    &--active {
+        &:hover {
+            background-color: color.$primary !important;
         }
     }
 
