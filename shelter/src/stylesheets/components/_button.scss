@@ -24,6 +24,7 @@
     &--disabled {
         color: color.$dark-s;
         border: 2px solid color.$dark-s;
+        cursor: auto;
 
         &:hover {
             background: none !important; 

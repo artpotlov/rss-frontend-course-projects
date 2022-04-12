@@ -9,4 +9,8 @@
     gap: 35px;
     height: 120px;
     background-color: color.$light-xl;
+
+    &__link {
+        text-decoration: none;
+    }
 }
