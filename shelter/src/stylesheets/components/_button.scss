@@ -32,6 +32,7 @@
     }
 
     &--active {
+        cursor: auto;
         &:hover {
             background-color: color.$primary !important;
         }

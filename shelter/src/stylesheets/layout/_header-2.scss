@@ -3,12 +3,17 @@
 @forward '../components/header-nav-2';
 
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 35px;
-    height: 120px;
+    position: fixed;
+    width: 100%;
     background-color: color.$light-xl;
+    
+    .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 35px;
+        height: 120px;
+    }
 
     &__link {
         text-decoration: none;
