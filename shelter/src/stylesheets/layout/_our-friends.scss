@@ -1,4 +1,5 @@
 @use '../abstracts/color';
+@use '../abstracts/media';
 @forward '../components/card';
 @forward '../components/text-block';
 @forward '../components/button';
@@ -18,16 +19,30 @@
         text-align: center;
     }
 
-    &__wrapper {
-        display: grid;
-        grid-template-columns: repeat(3, auto);
-        grid-column-gap: 90px;
-    }
-
     &__cards {
         display: grid;
         grid-template-columns: repeat(3, auto);
         grid-column-gap: 53px;
         align-items: center;
+
+        @media (media.$tablet <= width < media.$desktop) {
+            max-width: calc(100% - 60px);
+            grid-column-gap: 12px;
+        }
     }
+
+    &__wrapper {
+        display: grid;
+        grid-template-columns: repeat(3, auto);
+        grid-column-gap: 90px;
+
+        @media (media.$tablet <= width < media.$desktop) {
+            grid-template-columns: repeat(2, auto);
+            grid-column-gap: 40px;
+            grid-auto-flow: column;
+            overflow: hidden;
+        }
+    }
+
+    
 }

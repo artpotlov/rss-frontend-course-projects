@@ -1,5 +1,6 @@
 @use '../abstracts/color';
 @use '../abstracts/type';
+@use '../abstracts/media';
 @forward '../components/card';
 @forward '../components/text-block';
 @forward '../components/pagination';
@@ -12,6 +13,11 @@ main {
         align-items: center;
         gap: 60px;
         padding: 200px 0 100px 0;
+
+        @media (media.$tablet <= width < media.$desktop) {
+            gap: 30px;
+            padding-bottom: 76px;
+        }
     }
 }
 
@@ -25,5 +31,13 @@ main {
         grid-template-columns: repeat(4, 1fr);
         grid-column-gap: 40px;
         grid-row-gap: 30px;
+
+        @media (media.$tablet <= width < media.$desktop) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    &__pagination {
+
     }
 }

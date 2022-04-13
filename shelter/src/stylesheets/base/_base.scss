@@ -1,6 +1,9 @@
+@use '../abstracts/media';
+
 html {
     box-sizing: border-box;
     scroll-behavior: smooth;
+    font-size: 10px;
 }
 
 * {
@@ -17,4 +20,9 @@ html {
     width: 1280px;
     margin-inline: auto;
     padding-inline: 40px;
+
+    @media (media.$tablet <= width < media.$desktop) {
+        width: 768px;
+        padding-inline: 30px;
+    }
 }

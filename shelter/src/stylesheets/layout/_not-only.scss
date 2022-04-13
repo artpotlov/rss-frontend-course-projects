@@ -1,5 +1,6 @@
 @use '../abstracts/color';
 @use '../abstracts/type';
+@use '../abstracts/media';
 @forward '../components/button';
 
 .not-only {
@@ -7,12 +8,23 @@
     top: -120px;
     @extend %start-screen;
 
+    @media (media.$tablet <= width < media.$desktop) {
+        top: -90px;
+    }
     .container {
         display: grid;
         grid-template-columns: 460px 1fr;
         grid-column-gap: 42px;
         align-items: end;
         height: 908px;
+
+        @media (media.$tablet <= width < media.$desktop) {
+            grid-template-columns: 1fr;
+            grid-template-rows: repeat(2, auto);
+            justify-items: center;
+            align-items: start;
+            height: auto;
+        }
     }
     &__wrapper:nth-child(1) {
         display: flex;
@@ -20,6 +32,16 @@
         align-items: flex-start;
         gap: 42px;
         margin-bottom: 243px;
+
+        @media (media.$tablet <= width < media.$desktop) {
+            width: 460px;
+            padding-top: 150px;
+            margin-bottom: 100px;
+
+            .not-only__button {
+                align-self: center;
+            }
+        }
     }
     &__title {
         width: 310px;
@@ -33,5 +55,6 @@
 
     &__image {
         display: block;
+        width: auto;
     }
 }

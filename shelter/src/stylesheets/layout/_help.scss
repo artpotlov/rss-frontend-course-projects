@@ -1,5 +1,6 @@
 @use '../abstracts/icon';
 @use '../abstracts/color';
+@use '../abstracts/media';
 @forward '../abstracts/type';
 
 .help {
@@ -23,6 +24,14 @@
         justify-content: center;
         column-gap: 120px;
         row-gap: 55px;
+
+        @media (media.$tablet <= width < media.$desktop) {
+            width: 630px;
+            display: grid;
+            grid-template-columns: repeat(3, 170px);
+            grid-column-gap: 60px;
+            grid-auto-rows: auto;
+        }
     }
 
     &__card {
@@ -41,37 +50,4 @@
             color: color.$dark-l;
         }
     }
-}
-
-.help {
-}
-.container {
-}
-.title {
-}
-.help__cards {
-}
-.help__card {
-}
-.help__card-icon {
-}
-.icon-pet-food {
-}
-.help__card-title {
-}
-.icon-transportation {
-}
-.icon-toys {
-}
-.icon-blows-and-cups {
-}
-.icon-shampoos {
-}
-.icon-vitamins {
-}
-.icon-medicines {
-}
-.icon-collaps-leashes {
-}
-.icon-sleeping-areas {
 }
