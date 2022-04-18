@@ -39,6 +39,8 @@ main {
 
         @media (media.$tablet <= width < media.$desktop) {
             grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            margin-bottom: 10px;
         }
 
         @media (media.$mobile-1 <= width < media.$tablet) {
@@ -49,7 +51,15 @@ main {
 
     &__card {
         &:nth-child(n+4) {
-            display: none;
+            @media (media.$mobile-1 <= width < media.$tablet) {
+                display: none;
+            }
+        }
+
+        &:nth-child(n+7) {
+            @media (media.$tablet <= width < media.$desktop) {
+                display: none;
+            }
         }
     }
 }

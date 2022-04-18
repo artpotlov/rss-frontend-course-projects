@@ -31,7 +31,6 @@
         align-items: center;
 
         @media (media.$tablet <= width < media.$desktop) {
-            max-width: calc(100% - 60px);
             grid-column-gap: 12px;
         }
 
@@ -54,8 +53,6 @@
         @media (media.$tablet <= width < media.$desktop) {
             grid-template-columns: repeat(2, auto);
             grid-column-gap: 40px;
-            grid-auto-flow: column;
-            overflow: hidden;
         }
 
         @media (media.$mobile-1 <= width < media.$tablet) {
@@ -72,6 +69,12 @@
         @media (media.$mobile-1 <= width < media.$tablet) {
             margin: 0 calc((100vw - 270px - 20px) / 2);
             
+        }
+
+        &:nth-child(n+3) {
+            @media (media.$tablet <= width < media.$desktop) {
+                display: none;
+            }
         }
     }
 

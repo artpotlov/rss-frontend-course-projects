@@ -1,5 +1,6 @@
 @use '../abstracts/media';
 
+
 html {
     box-sizing: border-box;
     scroll-behavior: smooth;
@@ -21,17 +22,17 @@ body {
 }
 
 .container {
-    width: 1280px;
+    max-width: 1280px;
     margin-inline: auto;
     padding-inline: 40px;
 
     @media (media.$tablet <= width < media.$desktop) {
-        width: 768px;
+        max-width: media.$desktop;
         padding-inline: 30px;
     }
 
     @media (media.$mobile-1 <= width < media.$tablet) {
-        width: 320px;
+        max-width: media.$tablet;
         padding-inline: 10px;
     }
 }
