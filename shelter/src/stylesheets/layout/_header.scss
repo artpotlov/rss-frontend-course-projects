@@ -11,7 +11,13 @@
     position: relative;
     z-index: 1;
 
-    @media (media.$tablet <= width < media.$desktop) {
+    @media (media.$mobile-1 <= width < media.$desktop) {
         margin-top: 30px;
+    }
+
+    &__nav {
+        @media (media.$mobile-1 <= width < media.$tablet) {
+            display: none;
+        }
     }
 }

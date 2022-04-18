@@ -16,6 +16,10 @@ html {
     }
 }
 
+body {
+    box-sizing: border-box;
+}
+
 .container {
     width: 1280px;
     margin-inline: auto;
@@ -24,5 +28,10 @@ html {
     @media (media.$tablet <= width < media.$desktop) {
         width: 768px;
         padding-inline: 30px;
+    }
+
+    @media (media.$mobile-1 <= width < media.$tablet) {
+        width: 320px;
+        padding-inline: 10px;
     }
 }

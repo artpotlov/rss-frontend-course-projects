@@ -18,6 +18,11 @@ main {
             gap: 30px;
             padding-bottom: 76px;
         }
+
+        @media (media.$mobile-1 <= width < media.$tablet) {
+            padding: 162px 0 42 0;
+            gap: 42px;
+        }
     }
 }
 
@@ -35,9 +40,16 @@ main {
         @media (media.$tablet <= width < media.$desktop) {
             grid-template-columns: repeat(2, 1fr);
         }
+
+        @media (media.$mobile-1 <= width < media.$tablet) {
+            grid-template-columns: 1fr;
+            grid-template-rows: repeat(3, auto);
+        }
     }
 
-    &__pagination {
-
+    &__card {
+        &:nth-child(n+4) {
+            display: none;
+        }
     }
 }

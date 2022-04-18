@@ -13,6 +13,11 @@
         align-items: center;
         gap: 60px;
         padding: 80px 0 100px 0;
+
+        @media (media.$mobile-1 <= width < media.$tablet) {
+            padding: 42px 0;
+            gap: 42px;
+        }
     }
 
     &__title {
@@ -29,6 +34,16 @@
             max-width: calc(100% - 60px);
             grid-column-gap: 12px;
         }
+
+        @media (media.$mobile-1 <= width < media.$tablet) {
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, auto);
+            grid-column-gap: 80px;
+            grid-row-gap: 20px;
+            max-width: calc(100% - 20px);
+            justify-items: center;
+            overflow: hidden;
+        }
     }
 
     &__wrapper {
@@ -42,7 +57,31 @@
             grid-auto-flow: column;
             overflow: hidden;
         }
+
+        @media (media.$mobile-1 <= width < media.$tablet) {
+            grid-template-columns: 300px;
+            grid-column-gap: 10px;
+            grid-auto-flow: column;
+            overflow: hidden;
+            justify-self: start;
+            grid-area: 1 / 1 / span 1 / span 2;
+        }
+    }
+    
+    &__card {
+        @media (media.$mobile-1 <= width < media.$tablet) {
+            margin: 0 calc((100vw - 270px - 20px) / 2);
+            
+        }
     }
 
-    
+    &__button {
+        &:nth-child(1) {
+            justify-self: end;
+        }
+        &:nth-child(3) {
+            justify-self: start;
+        }
+    }
+
 }
