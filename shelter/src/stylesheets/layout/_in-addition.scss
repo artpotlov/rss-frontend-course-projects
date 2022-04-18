@@ -42,8 +42,7 @@
         }
 
         @media (media.$mobile-1 <= width < media.$tablet) {
-            width: 300px;
-            text-align: center;
+            max-width: 300px;
             align-items: center;
         }
     }
@@ -60,13 +59,19 @@
         max-width: 300px;
 
         @media (media.$mobile-1 <= width < media.$tablet) {
-            width: 220px;
+            max-width: 220px;
+            text-align: center;
         }
     }
 
     &__name-bank {
         @extend %h5;
         color: color.$dark-l;
+
+        @media (media.$mobile-1 <= width < media.$tablet) {
+            font-size: 1.3rem;
+            line-height: 160%;
+        }
     }
 
     &__link {
@@ -76,8 +81,8 @@
         padding: 10px 15px;
         background-color: color.$primary;
         display: flex;
-        flex-direction: row;
         gap: 15px;
+        align-items: center;
         width: fit-content;
         border-radius: 9px;
         transition: all .3s;
@@ -95,5 +100,10 @@
     &__caption {
         @extend %paragraph-s;
         color: color.$dark-m;
+
+        @media (media.$mobile-1 <= width < media.$tablet) {
+            padding: 0 10px;
+            text-align: justify;
+        }
     }
 }

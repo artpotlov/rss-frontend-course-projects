@@ -52,13 +52,15 @@
 
         @media (media.$mobile-1 <= width < media.$tablet) {
             max-width: 250px;
+            margin-bottom: 3px;
+            text-align: center;
         }
     }
 
     &__wrapper:nth-child(2) {
         display: flex;
         flex-direction: column;
-        gap: 25px;
+        gap: 22px;
         max-width: 430px;
 
         @media (media.$mobile-1 <= width < media.$desktop) {
@@ -67,8 +69,8 @@
 
         @media (media.$mobile-1 <= width < media.$tablet) {
             align-items: center;
-            text-align: center;
-            max-width: 300px;
+            padding: 0 15px;
+            text-align: justify;
         }
     }
 }

@@ -13,12 +13,17 @@
 
         @media (media.$mobile-1 <= width < media.$tablet) {
             padding: 42px 0;
+            gap: 42px;
         }
     }
 
     &__title {
         max-width: 310px;
         text-align: center;
+
+        @media (media.$mobile-1 <= width < media.$tablet) {
+            max-width: 250px;
+        }
     }
     
     &__cards {
@@ -30,7 +35,7 @@
         row-gap: 55px;
 
         @media (media.$tablet <= width < media.$desktop) {
-            max-width: 630px;
+            //max-width: 630px;
             display: grid;
             grid-template-columns: repeat(3, 170px);
             grid-column-gap: 60px;
@@ -38,9 +43,10 @@
         }
 
         @media (media.$mobile-1 <= width < media.$tablet) {
-            padding: 0 5px;
+            width: 100%;
+            margin: 0 5px;
             display: grid;
-            grid-template-columns: repeat(2, 130px);
+            grid-template-columns: repeat(auto-fill, 130px);
             grid-gap: 30px;
         }
     }
@@ -51,13 +57,23 @@
         align-items: center;
         gap: 30px;
 
+        @media (media.$mobile-1 <= width < media.$tablet) {
+            gap: 20px;
+        }
+
         &-icon {
             width: 60px;
             height: 60px;
+
+            @media (media.$mobile-1 <= width < media.$tablet) {
+                width: 50px;
+                height: 50px;
+            }
         }
 
         &-title {
             @extend %h4;
+            text-align: center;
             color: color.$dark-l;
         }
     }

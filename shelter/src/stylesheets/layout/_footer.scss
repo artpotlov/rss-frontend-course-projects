@@ -10,7 +10,7 @@
         display: grid;
         grid-template-columns: 280px 300px 1fr;
         grid-column-gap: 160px;
-        padding-top: 40px;
+        padding-top: 38px;
 
         @media (media.$tablet <= width < media.$desktop) {
             grid-template-columns: 280px 300px;
@@ -22,6 +22,7 @@
         }
 
         @media (media.$mobile-1 <= width < media.$tablet) {
+            max-width: 320px;
             grid-template-columns: 1fr;
             grid-template-rows: repeat(3,auto);
             grid-row-gap: 40px;
@@ -35,10 +36,6 @@
         flex-direction: column;
         justify-content: flex-end;
 
-        @media (media.$mobile-1 <= width < media.$tablet) {
-            text-align: center;
-            justify-content: flex-start;
-        }
         &:nth-child(1), &:nth-child(2) {
             padding-bottom: 60px;
 
@@ -47,10 +44,10 @@
             }
 
             @media (media.$mobile-1 <= width < media.$tablet) {
+                width: 100%;
                 padding-bottom: 0;
                 .footer__title {
                     max-width: 270px;
-                    margin-inline: auto;
                 }
             }
         }
@@ -70,6 +67,10 @@
                 flex: none;
                 width: 22px;
                 height: 32px;
+            }
+
+            @media (media.$mobile-1 <= width < media.$tablet) {
+                gap: 40px;
             }
         }
 
@@ -94,6 +95,11 @@
 
     &__title {
         color: color.$light-xl;
+
+        @media (media.$mobile-1 <= width < media.$tablet) {
+            margin: 0 auto;
+            text-align: center;
+        }
     }
 
     &__link {
@@ -102,9 +108,20 @@
         align-items: center;
         text-decoration: none;
 
+        @media (media.$mobile-1 <= width < media.$tablet) {
+            margin: 0 auto;
+        }
+
+        .footer__wrapper:nth-child(2) > & {
+            @media (media.$mobile-1 <= width < media.$tablet) {
+                margin: 0;
+            }
+        }
+
         &-text {
             @extend %h4;
             color: color.$primary;
+            text-align: left;
 
             @media (media.$mobile-1 <= width < media.$tablet) {
                 font-size: 2rem;
@@ -112,6 +129,4 @@
             }
         }
     }
-
-
 }

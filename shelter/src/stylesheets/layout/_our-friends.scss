@@ -37,11 +37,9 @@
         @media (media.$mobile-1 <= width < media.$tablet) {
             grid-template-columns: repeat(2, 1fr);
             grid-template-rows: repeat(2, auto);
-            grid-column-gap: 80px;
+            grid-column-gap: 0;
             grid-row-gap: 20px;
-            max-width: calc(100% - 20px);
             justify-items: center;
-            overflow: hidden;
         }
     }
 
@@ -56,19 +54,21 @@
         }
 
         @media (media.$mobile-1 <= width < media.$tablet) {
-            grid-template-columns: 300px;
-            grid-column-gap: 10px;
-            grid-auto-flow: column;
-            overflow: hidden;
-            justify-self: start;
+            grid-template-columns: 1fr;
             grid-area: 1 / 1 / span 1 / span 2;
         }
     }
     
     &__card {
         @media (media.$mobile-1 <= width < media.$tablet) {
-            margin: 0 calc((100vw - 270px - 20px) / 2);
+            margin-inline: auto;
             
+        }
+
+        &:nth-child(n+2) {
+            @media (media.$mobile-1 <= width < media.$tablet) {
+                display: none;
+            }
         }
 
         &:nth-child(n+3) {
@@ -81,9 +81,15 @@
     &__button {
         &:nth-child(1) {
             justify-self: end;
+            @media (media.$mobile-1 <= width < media.$tablet) {
+                margin-right: 40px;
+            }
         }
         &:nth-child(3) {
             justify-self: start;
+            @media (media.$mobile-1 <= width < media.$tablet) {
+                margin-left: 40px;
+            }
         }
     }
 

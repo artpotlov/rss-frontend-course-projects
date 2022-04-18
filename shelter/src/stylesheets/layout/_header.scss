@@ -2,6 +2,7 @@
 @use '../abstracts/media';
 @forward '../components/logo';
 @forward '../components/header-nav';
+@forward '../components/burger';
 
 .header {
     display: flex;
@@ -12,8 +13,26 @@
     position: relative;
     z-index: 1;
 
+    &__burger {
+        display: none;
+
+        @media (media.$mobile-1 <= width < media.$tablet) {
+            display: flex;   
+        }
+    }
+
     @media (media.$mobile-1 <= width < media.$desktop) {
         margin-top: 30px;
+    }
+
+    @media (media.$mobile-1 <= width < media.$tablet) {
+        justify-content: flex-start;
+        gap: 40px;
+    }
+
+    @media (media.$mobile-2 <= width < media.$tablet) {
+        justify-content: space-between;
+        gap: 40px;
     }
 
     &__nav {
