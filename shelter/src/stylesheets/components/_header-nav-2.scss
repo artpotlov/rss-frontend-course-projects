@@ -8,12 +8,12 @@
 
     .header__nav-item--active {
         border-bottom: 3px solid color.$primary;
-        &>.header_link {
+        &>.header__link {
             color: color.$dark-3xl;
         }
     }
 
-    .header_link {
+    .header__link {
         color: color.$dark-l;
         transition: color .3s;
         &:hover {

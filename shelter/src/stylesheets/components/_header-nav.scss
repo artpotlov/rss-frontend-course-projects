@@ -9,12 +9,12 @@
 
     .header__nav-item--active {
         border-bottom: 3px solid color.$primary;
-        &>.header_link {
+        &>.header__link {
             color: color.$light-s;
         }
     }
 
-    .header_link {
+    .header__link {
         color: color.$dark-s;
         transition: color .3s;
         &:hover {
