@@ -1,5 +1,6 @@
 @use '../abstracts/color';
 @use '../abstracts/type';
+@use '../abstracts/media';
 @forward '../components/button';
 
 .not-only {
@@ -7,31 +8,85 @@
     top: -120px;
     @extend %start-screen;
 
+    @media (media.$mobile-1 <= width < media.$desktop) {
+        top: -90px;
+    }
     .container {
         display: grid;
         grid-template-columns: 460px 1fr;
         grid-column-gap: 42px;
         align-items: end;
         height: 908px;
+
+        @media (media.$mobile-1 <= width < media.$desktop) {
+            grid-template-columns: 1fr;
+            grid-template-rows: repeat(2, auto);
+            justify-items: end;
+            align-items: start;
+            height: auto;
+        }
+        
+        @media (media.$mobile-1 <= width < media.$tablet) {
+            justify-items: end;
+        }
     }
     &__wrapper:nth-child(1) {
+        justify-self: center;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         gap: 42px;
         margin-bottom: 243px;
+
+        @media (media.$tablet <= width < media.$desktop) {
+            max-width: 460px;
+            padding-top: 150px;
+            margin-bottom: 100px;
+
+            .not-only__button {
+                align-self: center;
+            }
+        }
+
+        @media (media.$mobile-1 <= width < media.$tablet) {
+            width: 100%;
+            padding-top: 150px;
+            align-items: center;
+            margin-bottom: 105px;
+        }
     }
     &__title {
-        width: 310px;
+        max-width: 310px;
         @extend %h1;
         color: color.$light-xl;
+
+        @media (media.$mobile-1 <= width < media.$tablet) {
+            max-width: 200px;
+            text-align: center;
+        }
         
     }
     &__description {
         color: color.$dark-s;
+
+        @extend %paragraph-l;
+
+        @media (media.$mobile-1 <= width < media.$tablet) {
+            text-align: center;
+            max-width: 500px;
+        }
     }
 
     &__image {
         display: block;
+        width: auto;
+
+        @media (media.$tablet <= width < media.$desktop) {
+            max-width: 570px;
+        }
+
+        @media (media.$mobile-1 <= width < media.$tablet) {
+            max-width: 260px;
+        }
     }
 }

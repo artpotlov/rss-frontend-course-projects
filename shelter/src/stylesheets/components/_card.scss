@@ -4,7 +4,6 @@
 
 .pet__card {
     width: 270px;
-    height: 435px;
     padding-bottom: 30px;
     background-color: color.$light-s;
     display: flex;
@@ -17,10 +16,14 @@
     &-image {
         display: block;
         border-radius: 9px 9px 0 0;
+        width: fit-content;
+        height: fit-content;
     }
 
     &-name {
         @extend %h4;
+        font-size: 2rem;
+        line-height: 115%;
         color: color.$dark-l;
     }
 

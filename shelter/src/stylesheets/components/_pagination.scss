@@ -1,4 +1,10 @@
+@use '../abstracts/media';
+
 .pagination {
     display: flex;
     gap: 20px;
+
+    @media (media.$mobile-1 <= width < media.$tablet) {
+        gap: 10px;
+    }
 }

@@ -1,0 +1,32 @@
+@use '../abstracts/color';
+
+.burger {
+    width: 30px;
+    height: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all .3s;
+
+    &__line {
+        display: block;
+        height: 2px;
+        background-color: color.$primary;
+    }
+
+    &--color-primary {
+        .burger__line {
+            background-color: color.$primary;
+        }
+    }
+
+    &--color-secondary {
+        .burger__line {
+            background-color: color.$dark-3xl;
+        }
+    }
+
+    &--active {
+        transform: rotate(-90deg);
+    }
+}
