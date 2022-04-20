@@ -60,6 +60,7 @@
 
             .container {
                 position: relative;
+                right: -320px;
                 width: 320px;
                 height: 100%;
                 margin: 0;
@@ -70,6 +71,11 @@
                 @media (media.$mobile-1 <= width < media.$mobile-2) {
                     width: 100%;
                 }
+
+                animation-name: move-menu;
+                animation-duration: .3s;
+                animation-fill-mode: forwards;
+                animation-timing-function: ease-in;
             }
 
             .header__nav {
@@ -99,5 +105,15 @@
                 line-height: 160%;
             }
         }
+    }
+}
+
+@keyframes move-menu {
+    0% {
+        right: -320px;
+    }
+
+    100% {
+        right: 0;
     }
 }
