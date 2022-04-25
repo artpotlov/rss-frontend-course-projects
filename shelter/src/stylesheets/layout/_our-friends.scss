@@ -44,22 +44,42 @@
     }
 
     &__wrapper {
+        max-width: calc(270px * 3 + 90px * 2);
+        overflow: hidden;
+
+        @media (media.$tablet <= width < media.$desktop) {
+            max-width: calc(270px * 2 + 40px);
+        }
+
+        @media (media.$mobile-1 <= width < media.$tablet) {
+            max-width: 270px;
+            grid-template-columns: 1fr;
+            grid-area: 1 / 1 / span 1 / span 2;
+        }
+    }
+
+    &__card-track {
+        position: relative;
+        left: calc(-1 * (270px * 3 + 90px * 3));
         display: grid;
         grid-template-columns: repeat(3, auto);
         grid-column-gap: 90px;
+        grid-auto-flow: column;
 
         @media (media.$tablet <= width < media.$desktop) {
+            left: calc(-1 * (270px * 2 + 40px * 2));
             grid-template-columns: repeat(2, auto);
             grid-column-gap: 40px;
         }
 
         @media (media.$mobile-1 <= width < media.$tablet) {
             grid-template-columns: 1fr;
-            grid-area: 1 / 1 / span 1 / span 2;
+            grid-column-gap: 90px;
+            left: calc(-1 * (270px + 90px));
         }
     }
     
-    &__card {
+    /* &__card {
         @media (media.$mobile-1 <= width < media.$tablet) {
             margin-inline: auto;
             
@@ -76,7 +96,7 @@
                 display: none;
             }
         }
-    }
+    } */
 
     &__button {
         &:nth-child(1) {
@@ -93,4 +113,91 @@
         }
     }
 
+}
+
+.animation__slide-to- {
+    &left {
+        @media (media.$desktop < width) {
+            animation: desktop-slide-to-left .3s;
+        }
+
+        @media (media.$tablet <= width < media.$desktop) {
+            animation: tablet-slide-to-left .3s;
+        }
+
+        @media (media.$mobile-1 <= width < media.$tablet) {
+            animation: mobile-slide-to-left .3s;
+        }
+        
+    }
+
+    &right {
+        @media (media.$desktop < width) {
+            animation: desktop-slide-to-right .3s;
+        }
+
+        @media (media.$tablet <= width < media.$desktop) {
+            animation: tablet-slide-to-right .3s;
+        }
+
+        @media (media.$mobile-1 <= width < media.$tablet) {
+            animation: mobile-slide-to-right .3s;
+        }
+    }
+}
+
+@keyframes desktop-slide-to-left {
+    0% {
+        left: calc(-1 * (270px * 3 + 90px * 3));
+    }
+
+    100% {
+        left: 0;
+    }
+}
+
+@keyframes desktop-slide-to-right {
+    0% {
+        left: calc(-1 * (270px * 3 + 90px * 3));
+    }
+
+    100% {
+        left: calc(-2 * (270px * 3 + 90px * 3));
+    }
+}
+
+@keyframes tablet-slide-to-left {
+    0% {
+        left: calc(-1 * (270px * 2 + 40px * 2));
+    }
+    100% {
+        left: 0;
+    }
+}
+
+@keyframes tablet-slide-to-right {
+    0% {
+        left: calc(-1 * (270px * 2 + 40px * 2));
+    }
+    100% {
+        left: calc(-2 * (270px * 2 + 40px * 2));
+    }
+}
+
+@keyframes mobile-slide-to-left {
+    0% {
+        left: calc(-1 * (270px + 90px));
+    }
+    100% {
+        left: 0;
+    }
+}
+
+@keyframes mobile-slide-to-right {
+    0% {
+        left: calc(-1 * (270px + 90px));
+    }
+    100% {
+        left: calc(-2 * (270px + 90px));
+    }
 }
