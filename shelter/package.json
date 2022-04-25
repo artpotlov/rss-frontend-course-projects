@@ -5,12 +5,13 @@
   "scripts": {
     "clean": "rm -rf .parcel-cache dist",
     "dev": "parcel src/index.html",
-    "build": "parcel build src/index.html --public-url ./"
+    "build": "parcel build src/index.html --public-url ./",
+    "copy-img": "cp -vR src/assets/images dist"
   },
   "author": "Artem Potlov",
   "devDependencies": {
-    "@parcel/transformer-sass": "^2.4.1",
-    "parcel": "^2.4.1",
+    "@parcel/transformer-sass": "^2.5.0",
+    "parcel": "^2.5.0",
     "saas": "^1.0.0"
   }
 }
