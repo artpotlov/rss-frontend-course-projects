@@ -36,54 +36,13 @@
             <h1 class="pet__title title">
                 Our friends who <br>are looking for a house
             </h1>
-            <div class="pet__cards">
-                <div class="pet__card">
-                    <img class="pet__card-image" src="/src/assets/images/pets-katrine.jpg" alt="Pet image">
-                    <h4 class="pet__card-name">Katrine</h4>
-                    <button class="button button__outline">Learn more</button>
-                </div>
-                <div class="pet__card">
-                    <img class="pet__card-image" src="/src/assets/images/pets-jennifer.jpg" alt="Pet image">
-                    <h4 class="pet__card-name">Jennifer</h4>
-                    <button class="button button__outline">Learn more</button>
-                </div>
-                <div class="pet__card">
-                    <img class="pet__card-image" src="/src/assets/images/pets-woody.jpg" alt="Pet image">
-                    <h4 class="pet__card-name">Woody</h4>
-                    <button class="button button__outline">Learn more</button>
-                </div>
-                <div class="pet__card">
-                    <img class="pet__card-image" src="/src/assets/images/pets-sophia.jpg" alt="Pet image">
-                    <h4 class="pet__card-name">Sophia</h4>
-                    <button class="button button__outline">Learn more</button>
-                </div>
-                <div class="pet__card">
-                    <img class="pet__card-image" src="/src/assets/images/pets-timmy.jpg" alt="Pet image">
-                    <h4 class="pet__card-name">Timmy</h4>
-                    <button class="button button__outline">Learn more</button>
-                </div>
-                <div class="pet__card">
-                    <img class="pet__card-image" src="/src/assets/images/pets-charly.jpg" alt="Pet image">
-                    <h4 class="pet__card-name">Charly</h4>
-                    <button class="button button__outline">Learn more</button>
-                </div>
-                <div class="pet__card">
-                    <img class="pet__card-image" src="/src/assets/images/pets-scarlet.jpg" alt="Pet image">
-                    <h4 class="pet__card-name">Scarlett</h4>
-                    <button class="button button__outline">Learn more</button>
-                </div>
-                <div class="pet__card">
-                    <img class="pet__card-image" src="/src/assets/images/pets-freddie.jpg" alt="Pet image">
-                    <h4 class="pet__card-name">Freddie</h4>
-                    <button class="button button__outline">Learn more</button>
-                </div>
-            </div>
+            <div class="pet__cards"></div>
             <div class="pet__pagination pagination">
-                <button class="pet__button button button__outline button__round button--disabled"><<</button>
-                <button class="pet__button button button__outline button__round button--disabled"><</button>
-                <button class="pet__button button button__fill button__round button--active">1</button>
-                <button class="pet__button button button__outline button__round">></button>
-                <button class="pet__button button button__outline button__round">>></button>
+                <button data-page="start" class="pet__button button button__outline button__round button--disabled"><<</button>
+                <button data-page="prev" class="pet__button button button__outline button__round button--disabled"><</button>
+                <button data-page="current" class="pet__button button button__fill button__round button--active">1</button>
+                <button data-page="next" class="pet__button button button__outline button__round">></button>
+                <button data-page="end" class="pet__button button button__outline button__round">>></button>
             </div>
         </section>
     </main>

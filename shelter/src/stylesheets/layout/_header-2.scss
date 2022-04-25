@@ -56,7 +56,7 @@
             justify-content: flex-end;
             align-items: flex-start;
             background-color: rgba($color: color.$dark-3xl, $alpha: .6);
-            z-index: 1;
+            z-index: 900;
 
             .container {
                 position: relative;
@@ -71,11 +71,10 @@
                 @media (media.$mobile-1 <= width < media.$mobile-2) {
                     width: 100%;
                 }
+            }
 
-                animation-name: move-menu;
-                animation-duration: .3s;
-                animation-fill-mode: forwards;
-                animation-timing-function: ease-in;
+            .header__logo-subtitle {
+                line-height: 1.15;
             }
 
             .header__nav {
@@ -108,12 +107,30 @@
     }
 }
 
-@keyframes move-menu {
+.animation__ {
+    &move-left {
+        animation: move-left .3s both;
+    }
+    &move-right {
+        animation: move-right .3s both;
+    }
+}
+
+@keyframes move-left {
     0% {
         right: -320px;
     }
 
     100% {
         right: 0;
+    }
+}
+
+@keyframes move-right {
+    0% {
+        right: 0;
+    }
+    100% {
+        right: -320px;
     }
 }

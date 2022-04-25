@@ -48,18 +48,22 @@ main {
             grid-template-rows: repeat(3, auto);
         }
     }
+}
 
-    &__card {
-        &:nth-child(n+4) {
-            @media (media.$mobile-1 <= width < media.$tablet) {
-                display: none;
-            }
-        }
+.animation__ {
+    &fade {
+        animation: fade .5s;
+    }
+}
 
-        &:nth-child(n+7) {
-            @media (media.$tablet <= width < media.$desktop) {
-                display: none;
-            }
-        }
+@keyframes fade {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
     }
 }

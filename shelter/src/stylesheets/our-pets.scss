@@ -2,6 +2,7 @@ $theme: global two;
 
 @forward 'base/normalize';
 @forward 'base/base';
+@forward 'layout/popup';
 @forward 'layout/header-2';
 @forward 'layout/our-friend-2';
 @forward 'layout/footer';

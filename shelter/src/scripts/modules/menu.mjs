@@ -1,14 +1,22 @@
 const HEADER = document.querySelector('.header')
 const BURGER = document.querySelector('.burger')
+const CONTAINER = HEADER.querySelector('.container')
 
 const openMenu = () => {
     HEADER.classList.add('header--active')
     BURGER.classList.add('burger--active')
+    CONTAINER.classList.add('animation__move-left')
 }
 
 const closeMenu = () => {
-    HEADER.classList.remove('header--active')
-    BURGER.classList.remove('burger--active')
+    CONTAINER.classList.add('animation__move-right')
+    setTimeout(() => {
+        CONTAINER.classList.remove('animation__move-left')
+        CONTAINER.classList.remove('animation__move-right')
+        HEADER.classList.remove('header--active')
+        BURGER.classList.remove('burger--active')
+    }, 300)
+    
 }
 
 const openCloseMenu = (event) => {
