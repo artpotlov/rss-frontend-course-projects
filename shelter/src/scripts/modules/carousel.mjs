@@ -51,9 +51,12 @@ const updateCards = (count, direction) => {
 const insertCard = (position, numberOfCard) => {
     const imageSource = pets[numberOfCard].img
     const petName = pets[numberOfCard].name
+    let imageTmp = new Image()
+    imageTmp.src = imageSource
+    console.log(imageTmp.src)
     const petCardTemplate = `
         <div class="our-friends__card pet__card" data-pet-number="${numberOfCard}">
-        <img class="pet__card-image" src="${imageSource}" alt="${petName}">
+        <img class="pet__card-image" src="${imageTmp.src}" alt="${petName}">
         <h4 class="pet__card-name">${petName}</h4>
         <button class="button button__outline">Learn more</button>
         </div>

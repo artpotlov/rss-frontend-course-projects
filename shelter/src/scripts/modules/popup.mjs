@@ -1,16 +1,18 @@
 import pets from './pets.json'
 
-BODY = document.querySelector('body')
-CARDS = document.querySelector('.pet__cards')
+const BODY = document.querySelector('body')
+const CARDS = document.querySelector('.pet__cards')
 
-const showPopUp = (numberOfPet) => {    
+const showPopUp = (numberOfPet) => {
+    const petImage = new Image()
+    petImage.src = pets[numberOfPet].img    
     const popUpTemplate = `
         <section class="popup">
         <div class="popup__container">
             <button class="popup__button button button__outline button__round">×</button>
             <div class="popup__content">
                 <div class="popup__column">
-                    <img src="${pets[numberOfPet].img}" alt="${pets[numberOfPet].name}" class="popup__image">
+                    <img src="${petImage.src}" alt="${pets[numberOfPet].name}" class="popup__image">
                 </div>
                 <div class="popup__column">
                     <h3 class="popup__title">${pets[numberOfPet].name}</h3>

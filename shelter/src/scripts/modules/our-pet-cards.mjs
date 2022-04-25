@@ -35,9 +35,11 @@ const insertCards = (cards, posSt, posEn) => {
             CARDS.lastElementChild.remove()
         }
         cards.slice(posSt, posEn).forEach(num => {
+            const petImage = new Image()
+            petImage.src = pets[num].img
             let cardTemplate = `
                 <div class="pet__card" data-pet-number="${num}">
-                    <img class="pet__card-image" src="${pets[num].img}" alt="${pets[num].name}">
+                    <img class="pet__card-image" src="${petImage.src}" alt="${pets[num].name}">
                     <h4 class="pet__card-name">${pets[num].name}</h4>
                     <button class="button button__outline">Learn more</button>
                 </div>
