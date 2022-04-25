@@ -53,7 +53,6 @@ const insertCard = (position, numberOfCard) => {
     const petName = pets[numberOfCard].name
     let imageTmp = new Image()
     imageTmp.src = imageSource
-    console.log(imageTmp.src)
     const petCardTemplate = `
         <div class="our-friends__card pet__card" data-pet-number="${numberOfCard}">
         <img class="pet__card-image" src="${imageTmp.src}" alt="${petName}">
@@ -111,7 +110,9 @@ const initCard = () => {
     if (window.matchMedia('(min-width: 768px) and (max-width: 1279px)').matches) {
         cards = []
 
-        CARD_TRACK.children = ''
+        while(CARD_TRACK.children.length > 0) {
+            CARD_TRACK.lastElementChild.remove()
+        }
 
         cards.push(...generateRandomNumberOfCard([], 2))
         cards.push(...generateRandomNumberOfCard(cards.slice(0,2), 2))
@@ -123,7 +124,9 @@ const initCard = () => {
     if (window.matchMedia('(min-width: 320px) and (max-width: 767px)').matches) {
         cards = []
 
-        CARD_TRACK.children = ''
+        while(CARD_TRACK.children.length > 0) {
+            CARD_TRACK.lastElementChild.remove()
+        }
 
         cards.push(...generateRandomNumberOfCard([], 1))
         cards.push(...generateRandomNumberOfCard(cards.slice(0,1), 1))
