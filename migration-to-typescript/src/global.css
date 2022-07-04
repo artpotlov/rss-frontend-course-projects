@@ -14,22 +14,25 @@ header h1 {
 }
 
 footer {
-    height: 6.25rem;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 footer .copyright {
     font-size: 0.8rem;
-    color: #333;
+    color: #fff;
     text-align: center;
 }
-footer .copyright a {
-    color: #444;
+footer .copyright__link {
+    margin-top: 1rem;
+    display: block;
+    color: #fff;
+    text-decoration: none;
 }
-footer .copyright a:hover {
-    color: #555;
+footer .copyright__link:hover {
+    color: #f0f0f0;
 }
-footer .copyright:before {
-    content: '©';
+
+footer .copyright__logo {
+    width: 5rem;
 }
