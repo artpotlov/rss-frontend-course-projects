@@ -16,15 +16,15 @@ class Sources {
         const sourceItemTemp = document.querySelector('#sourceItemTemp') as HTMLTemplateElement;
 
         data.forEach((item) => {
-            const sourceClone = sourceItemTemp.content.cloneNode(true) as HTMLElement;
-
-            (sourceClone.querySelector('.source__item-name') as HTMLElement).textContent = item.name;
-            (sourceClone.querySelector('.source__item') as HTMLElement).setAttribute('data-source-id', item.id);
-
+            const sourceClone = (sourceItemTemp.content.cloneNode(true) as HTMLElement).querySelector(
+                '.source__item'
+            ) as HTMLOptionElement;
+            sourceClone.value = item.id;
+            sourceClone.textContent = item.name;
             fragment.append(sourceClone);
         });
 
-        (document.querySelector('.sources') as HTMLElement).append(fragment);
+        (document.querySelector('.source') as HTMLElement).append(fragment);
     }
 }
 
