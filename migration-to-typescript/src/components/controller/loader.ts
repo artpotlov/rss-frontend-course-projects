@@ -11,13 +11,13 @@ interface IParameters {
 }
 
 export interface IArticles {
-    status: string;
-    articles: IArticle[];
+    readonly status: string;
+    readonly articles: IArticle[];
 }
 
 export interface ISources {
-    status: string;
-    sources: ISource[];
+    readonly status: string;
+    readonly sources: ISource[];
 }
 
 export type CallBackFunc = (<T>(data: T) => void) | (() => void);
