@@ -11,7 +11,7 @@ class App {
     }
 
     start() {
-        (document.querySelector('.sources') as Element).addEventListener('click', (e: Event) =>
+        (document.querySelector('.source') as HTMLSelectElement).addEventListener('change', (e: Event) =>
             this.controller.getNews(e, ((data: IArticles) => this.view.drawNews(data)) as CallBackFunc)
         );
         this.controller.getSources(((data: ISources) => this.view.drawSources(data)) as CallBackFunc);
