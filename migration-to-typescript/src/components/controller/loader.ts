@@ -33,11 +33,11 @@ enum ResponseStatus {
 }
 
 class Loader {
-    private _baseLink: string;
-    private _options: IOption;
+    private baseLink: string;
+    private options: IOption;
     constructor(baseLink: string, options: IOption) {
-        this._baseLink = baseLink;
-        this._options = options;
+        this.baseLink = baseLink;
+        this.options = options;
     }
 
     public getResp(
@@ -60,8 +60,8 @@ class Loader {
     }
 
     private makeUrl(options: IOption, endpoint: string): string {
-        const urlOptions: IOption = { ...this._options, ...options };
-        let url = `${this._baseLink}${endpoint}?`;
+        const urlOptions: IOption = { ...this.options, ...options };
+        let url = `${this.baseLink}${endpoint}?`;
 
         Object.keys(urlOptions).forEach((key) => {
             url += `${key}=${urlOptions[key]}&`;
