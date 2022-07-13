@@ -5,15 +5,18 @@ import Sources from './sources/sources';
 export class AppView {
     constructor(private readonly news: News, private readonly sources: Sources) {}
 
-
-    drawNews(data: IArticles) {
-        const values: IArticle[] = data?.articles ? data?.articles : [];
-        this.news.draw(values);
+    drawNews(data: IArticles | undefined) {
+        if (data) {
+            const values = data?.articles ? data?.articles : [];
+            this.news.draw(values);
+        }
     }
 
-    drawSources(data: ISources) {
-        const values = data?.sources ? data?.sources : [];
-        this.sources.draw(values);
+    drawSources(data: ISources | undefined) {
+        if (data) {
+            const values = data?.sources ? data?.sources : [];
+            this.sources.draw(values);
+        }
     }
 }
 
