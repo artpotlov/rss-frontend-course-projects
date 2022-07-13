@@ -1,14 +1,8 @@
 import AppController from '../controller/controller';
-import { CallBackFunc, IArticles, ISources } from '../controller/loader';
 import { AppView } from '../view/appView';
 
 class App {
-    private controller: AppController;
-    private view: AppView;
-    constructor() {
-        this.controller = new AppController();
-        this.view = new AppView();
-    }
+    constructor(private readonly controller: AppController, private readonly view: AppView) {}
 
     start() {
         document
