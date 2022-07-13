@@ -11,10 +11,10 @@ class App {
     }
 
     start() {
-        (document.querySelector('.source') as HTMLSelectElement).addEventListener('change', (e: Event) =>
-            this.controller.getNews(e, ((data: IArticles) => this.view.drawNews(data)) as CallBackFunc)
-        );
-        this.controller.getSources(((data: ISources) => this.view.drawSources(data)) as CallBackFunc);
+        document
+            .querySelector('.source')
+            ?.addEventListener('change', (e) => this.controller.getNews(e, (data) => this.view.drawNews(data)));
+        this.controller.getSources((data) => this.view.drawSources(data));
     }
 }
 
