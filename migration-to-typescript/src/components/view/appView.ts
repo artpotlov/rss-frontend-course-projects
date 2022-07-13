@@ -7,7 +7,7 @@ export class AppView {
 
     drawNews(data: IArticles | undefined) {
         if (data) {
-            const articles = data.articles;
+            const articles = data?.articles || [];
             this.news.draw(articles);
         } else {
             this.news.draw([]);
@@ -16,7 +16,7 @@ export class AppView {
 
     drawSources(data: ISources | undefined) {
         if (data) {
-            const sources = data.sources;
+            const sources = data?.sources || [];
             this.sources.draw(sources);
         } else {
             this.sources.draw([]);
