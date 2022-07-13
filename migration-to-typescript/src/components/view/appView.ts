@@ -2,7 +2,7 @@ import { IArticles, ISources } from '../controller/loader';
 import News from './news/news';
 import Sources from './sources/sources';
 
-export class AppView {
+class AppView {
     constructor(private readonly news: News, private readonly sources: Sources) {}
 
     drawNews(data: IArticles | undefined) {
