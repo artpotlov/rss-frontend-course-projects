@@ -12,19 +12,22 @@ export interface ISource {
 
 class Sources {
     draw(data: ISource[]) {
-        const fragment: DocumentFragment = document.createDocumentFragment();
-        const sourceItemTemp = document.querySelector('#sourceItemTemp') as HTMLTemplateElement;
+        const fragment = document.createDocumentFragment();
+        const sourceItemTemp = document.querySelector<HTMLTemplateElement>('#sourceItemTemp');
 
-        data.forEach((item) => {
-            const sourceClone = (sourceItemTemp.content.cloneNode(true) as HTMLElement).querySelector(
-                '.source__item'
-            ) as HTMLOptionElement;
-            sourceClone.value = item.id;
-            sourceClone.textContent = item.name;
-            fragment.append(sourceClone);
+        data.forEach(({ id, name }) => {
+            const sourceClone = sourceItemTemp?.content.cloneNode(true);
+            if (sourceClone) {
+                const sourceItem = (<HTMLElement>sourceClone).querySelector<HTMLOptionElement>('.source__item');
+                if (sourceItem) {
+                    sourceItem.value = id;
+                    sourceItem.textContent = name;
+                }
+                fragment.append(sourceClone);
+            }
         });
 
-        (document.querySelector('.source') as HTMLElement).append(fragment);
+        document.querySelector('.source')?.append(fragment);
     }
 }
 
