@@ -7,15 +7,19 @@ export class AppView {
 
     drawNews(data: IArticles | undefined) {
         if (data) {
-            const values = data?.articles || [];
-            this.news.draw(values);
+            const articles = data.articles;
+            this.news.draw(articles);
+        } else {
+            this.news.draw([]);
         }
     }
 
     drawSources(data: ISources | undefined) {
         if (data) {
-            const values = data?.sources || [];
-            this.sources.draw(values);
+            const sources = data.sources;
+            this.sources.draw(sources);
+        } else {
+            this.sources.draw([]);
         }
     }
 }
