@@ -20,7 +20,7 @@ export interface ISources {
     readonly sources: ISource[];
 }
 
-export type CallBackFunc = (<T>(data: T) => void) | (() => void);
+export type CallBackFunc<T> = (data?: T) => void;
 
 enum RequestMethod {
     GET = 'GET',
