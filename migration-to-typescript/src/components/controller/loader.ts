@@ -37,7 +37,7 @@ class Loader {
 
     public getResp(
         { endpoint, options = {} }: IParameters,
-        callback: CallBackFunc = () => {
+        callback = () => {
             console.error('No callback for GET response');
         }
     ): void {
@@ -65,10 +65,15 @@ class Loader {
         return url.slice(0, -1);
     }
 
-    private load(method: RequestMethod, endpoint: string, callback: CallBackFunc, options: IOption = {}): void {
+    private load(
+        method: RequestMethod,
+        endpoint: string,
+        callback: CallBackFunc<IArticles | ISources>,
+        options: IOption = {}
+    ): void {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
-            .then((res: Response) => res.json())
+            .then((res) => res.json())
             .then((data: IArticles | ISources) => callback(data))
             .catch((err: Error) => console.error(err));
     }
