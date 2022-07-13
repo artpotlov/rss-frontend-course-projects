@@ -16,35 +16,45 @@ export interface IArticle {
 
 class News {
     draw(data: IArticle[]) {
-        const news: IArticle[] = data.length >= 10 ? data.filter((_item, idx) => idx < 10) : data;
+        const isMoreThan = (n: number): boolean => data.length >= n;
+        const maxNumOfNews = (n: number): IArticle[] => (isMoreThan(n) ? data.filter((_item, idx) => idx < n) : data);
+        const isEvenElement = (n: number): boolean => (n % 2 === 0 ? true : false);
 
-        const fragment: DocumentFragment = document.createDocumentFragment();
-        const newsItemTemp = document.querySelector('#newsItemTemp') as HTMLTemplateElement;
+        const news = maxNumOfNews(10);
+        const fragment = document.createDocumentFragment();
+        const newsItemTemp = document.querySelector<HTMLTemplateElement>('#newsItemTemp');
+        const newsElement = document.querySelector<HTMLElement>('.news');
 
         news.forEach((item, idx) => {
-            const newsClone = newsItemTemp.content.cloneNode(true) as HTMLElement;
+            const newsClone = newsItemTemp?.content.cloneNode(true);
+            if (newsClone) {
+                const newsCloneAsElement = <HTMLElement>newsClone;
+                const metaPhoto = newsCloneAsElement.querySelector<HTMLElement>('.news__meta-photo');
+                const metaAuthor = newsCloneAsElement.querySelector<HTMLElement>('.news__meta-author');
+                const metaDate = newsCloneAsElement.querySelector<HTMLElement>('.news__meta-author');
+                const descriptionTitle = newsCloneAsElement.querySelector('.news__description-title');
+                const descriptionSource = newsCloneAsElement.querySelector('.news__description-source');
+                const descriptionContent = newsCloneAsElement.querySelector('.news__description-content');
 
-            if (idx % 2) (newsClone.querySelector('.news__item') as HTMLElement).classList.add('alt');
+                if (isEvenElement(idx)) newsCloneAsElement.querySelector('.news__item')?.classList.add('alt');
+                if (metaPhoto)
+                    metaPhoto.style.backgroundImage = `url(${item.urlToImage || 'img/news_placeholder.jpg'})`;
+                if (metaAuthor) metaAuthor.textContent = item.author || item.source.name;
+                if (metaDate)
+                    metaDate.textContent = item.publishedAt.toString().slice(0, 10).split('-').reverse().join('-');
+                if (descriptionTitle) descriptionTitle.textContent = item.title;
+                if (descriptionSource) descriptionSource.textContent = item.source.name;
+                if (descriptionContent) descriptionContent.textContent = item.description;
+                newsCloneAsElement.querySelector<HTMLElement>('.news__read-more a')?.setAttribute('href', item.url);
 
-            (newsClone.querySelector('.news__meta-photo') as HTMLElement).style.backgroundImage = `url(${
-                item.urlToImage || 'img/news_placeholder.jpg'
-            })`;
-            (newsClone.querySelector('.news__meta-author') as HTMLElement).textContent =
-                item.author || item.source.name;
-            (newsClone.querySelector(
-                '.news__meta-date'
-            ) as HTMLElement).textContent = item.publishedAt.toString().slice(0, 10).split('-').reverse().join('-');
-
-            (newsClone.querySelector('.news__description-title') as HTMLElement).textContent = item.title;
-            (newsClone.querySelector('.news__description-source') as HTMLElement).textContent = item.source.name;
-            (newsClone.querySelector('.news__description-content') as HTMLElement).textContent = item.description;
-            (newsClone.querySelector('.news__read-more a') as HTMLElement).setAttribute('href', item.url);
-
-            fragment.append(newsClone);
+                fragment.append(newsClone);
+            }
         });
 
-        (document.querySelector('.news') as HTMLElement).innerHTML = '';
-        (document.querySelector('.news') as HTMLElement).appendChild(fragment);
+        if (newsElement) {
+            newsElement.innerHTML = '';
+            newsElement.appendChild(fragment);
+        }
     }
 }
 
