@@ -1,8 +1,8 @@
 import { IArticles, ISources } from '../controller/loader';
-import News from './news/news';
-import Sources from './sources/sources';
+import { News } from './news/news';
+import { Sources } from './sources/sources';
 
-class AppView {
+export class AppView {
     constructor(private readonly news: News, private readonly sources: Sources) {}
 
     drawNews(data: IArticles | undefined) {
@@ -19,5 +19,3 @@ class AppView {
         }
     }
 }
-
-export default AppView;

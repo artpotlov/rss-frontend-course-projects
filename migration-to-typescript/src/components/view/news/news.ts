@@ -14,7 +14,7 @@ export interface IArticle {
     content: string;
 }
 
-class News {
+export class News {
     draw(data: IArticle[]) {
         const isMoreThan = (n: number): boolean => data.length >= n;
         const maxNumOfNews = (n: number): IArticle[] => (isMoreThan(n) ? data.filter((_item, idx) => idx < n) : data);
@@ -57,5 +57,3 @@ class News {
         }
     }
 }
-
-export default News;

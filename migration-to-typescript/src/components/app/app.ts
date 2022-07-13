@@ -1,7 +1,7 @@
-import AppController from '../controller/controller';
-import AppView from '../view/appView';
+import { AppController } from '../controller/controller';
+import { AppView } from '../view/appView';
 
-class App {
+export class App {
     constructor(private readonly controller: AppController, private readonly view: AppView) {}
 
     start() {
@@ -11,5 +11,3 @@ class App {
         this.controller.getSources((data) => this.view.drawSources(data));
     }
 }
-
-export default App;

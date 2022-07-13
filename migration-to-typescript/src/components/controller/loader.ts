@@ -32,7 +32,7 @@ const ResponseStatus = {
     NOTFOUND: 404,
 };
 
-class Loader {
+export class Loader {
     constructor(private readonly baseLink: string, private readonly options: IOption) {}
 
     public getResp(
@@ -78,5 +78,3 @@ class Loader {
             .catch((err: Error) => console.error(err));
     }
 }
-
-export default Loader;

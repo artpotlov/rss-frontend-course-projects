@@ -1,7 +1,7 @@
-import AppLoader from './appLoader';
+import { AppLoader } from './appLoader';
 import { CallBackFunc, IArticles, ISources } from './loader';
 
-class AppController extends AppLoader {
+export class AppController extends AppLoader {
     public getSources(callback: CallBackFunc<ISources>): void {
         super.getResp(
             {
@@ -29,5 +29,3 @@ class AppController extends AppLoader {
         }
     }
 }
-
-export default AppController;

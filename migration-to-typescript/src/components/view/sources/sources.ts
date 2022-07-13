@@ -10,7 +10,7 @@ export interface ISource {
     country: string;
 }
 
-class Sources {
+export class Sources {
     draw(data: ISource[]) {
         const fragment = document.createDocumentFragment();
         const sourceItemTemp = document.querySelector<HTMLTemplateElement>('#sourceItemTemp');
@@ -30,5 +30,3 @@ class Sources {
         document.querySelector('.source')?.append(fragment);
     }
 }
-
-export default Sources;
