@@ -33,12 +33,7 @@ enum ResponseStatus {
 }
 
 class Loader {
-    private baseLink: string;
-    private options: IOption;
-    constructor(baseLink: string, options: IOption) {
-        this.baseLink = baseLink;
-        this.options = options;
-    }
+    constructor(private readonly baseLink: string, private readonly options: IOption) {}
 
     public getResp(
         { endpoint, options = {} }: IParameters,
