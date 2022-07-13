@@ -27,10 +27,10 @@ enum RequestMethod {
     POST = 'POST',
 }
 
-enum ResponseStatus {
-    UNAUTHORIZED = 401,
-    NOTFOUND = 404,
-}
+const ResponseStatus = {
+    UNAUTHORIZED: 401,
+    NOTFOUND: 404,
+};
 
 class Loader {
     constructor(private readonly baseLink: string, private readonly options: IOption) {}
