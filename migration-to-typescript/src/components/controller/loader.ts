@@ -1,31 +1,6 @@
-import { IArticle } from '../view/news/news';
-import { ISource } from '../view/sources/sources';
-
-interface IOption {
-    [key: string]: string;
-}
-
-interface IParameters {
-    endpoint: string;
-    options?: IOption;
-}
-
-export interface IArticles {
-    readonly status: string;
-    readonly articles: IArticle[];
-}
-
-export interface ISources {
-    readonly status: string;
-    readonly sources: ISource[];
-}
-
-export type CallBackFunc<T> = (data?: T) => void;
-
-enum RequestMethod {
-    GET = 'GET',
-    POST = 'POST',
-}
+import { RequestMethod } from '../../base/enums';
+import { IArticles, IOption, IParameters, ISources } from '../../base/interfaces';
+import { CallBackFunc } from '../../base/types';
 
 const ResponseStatus = {
     UNAUTHORIZED: 401,

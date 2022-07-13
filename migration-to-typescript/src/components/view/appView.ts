@@ -1,4 +1,4 @@
-import { IArticles, ISources } from '../controller/loader';
+import { IArticles, ISources } from '../../base/interfaces';
 import { News } from './news/news';
 import { Sources } from './sources/sources';
 

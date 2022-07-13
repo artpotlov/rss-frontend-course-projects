@@ -1,5 +1,6 @@
+import { IArticles, ISources } from '../../base/interfaces';
+import { CallBackFunc } from '../../base/types';
 import { AppLoader } from './appLoader';
-import { CallBackFunc, IArticles, ISources } from './loader';
 
 export class AppController extends AppLoader {
     public getSources(callback: CallBackFunc<ISources>): void {

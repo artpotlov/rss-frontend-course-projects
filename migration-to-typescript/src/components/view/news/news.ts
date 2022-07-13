@@ -1,18 +1,5 @@
+import { IArticle } from '../../../base/interfaces';
 import './news.css';
-
-export interface IArticle {
-    source: {
-        id: string;
-        name: string;
-    };
-    author: string;
-    title: string;
-    description: string;
-    url: string;
-    urlToImage: string;
-    publishedAt: Date;
-    content: string;
-}
 
 export class News {
     draw(data: IArticle[]) {
