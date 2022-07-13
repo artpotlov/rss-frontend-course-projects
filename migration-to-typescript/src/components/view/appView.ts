@@ -1,49 +1,6 @@
+import { IArticles, ISources } from '../controller/loader';
 import News from './news/news';
 import Sources from './sources/sources';
-
-interface IArticles {
-    status: string;
-    articles: {
-        source: {
-            id: string;
-            name: string;
-        };
-        author: string;
-        title: string;
-        description: string;
-        url: string;
-        urlToImage: string;
-        publishedAt: Date;
-        content: string;
-    }[];
-}
-
-interface IArticle {
-    source: {
-        id: string;
-        name: string;
-    };
-    author: string;
-    title: string;
-    description: string;
-    url: string;
-    urlToImage: string;
-    publishedAt: Date;
-    content: string;
-}
-
-interface ISources {
-    status: string;
-    sources: {
-        id: string;
-        name: string;
-        description: string;
-        url: string;
-        category: string;
-        language: string;
-        country: string;
-    }[];
-}
 
 export class AppView {
     private news: News;
