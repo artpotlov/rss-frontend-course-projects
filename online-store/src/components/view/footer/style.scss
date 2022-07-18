@@ -1,0 +1,11 @@
+.footer {
+  @apply w-full bg-gray-100;
+
+  &__wrapper {
+    @apply flex justify-between max-w-screen-xl mx-auto bg-gray-100 py-8;
+  }
+
+  &__copyright-wrapper {
+    @apply flex gap-4;
+  }
+}
