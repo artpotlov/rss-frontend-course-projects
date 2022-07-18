@@ -38,7 +38,6 @@ export const baseConfig: Configuration = {
   output: {
     filename: 'boundle.js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: './dist',
     clean: true,
   },
   plugins: [
