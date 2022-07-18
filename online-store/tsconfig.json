@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ES5",
+    "target": "ES2016",
     "module": "CommonJS",
     "moduleResolution": "node",
     "allowJs": true,
@@ -10,7 +10,7 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitAny": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
   },
-  "exclude": ["node_modules"]
+  "exclude": ["./node_modules"],
 }
