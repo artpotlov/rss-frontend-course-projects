@@ -1,0 +1,31 @@
+.header {
+  @apply bg-white w-full border-b;
+}
+
+.header__wrapper {
+  @apply flex gap-4 justify-between items-center h-16 max-w-screen-xl mx-auto;
+}
+
+.header__logo {
+  @apply font-black text-2xl text-slate-800;
+}
+
+.header__input-wrapper {
+  @apply relative flex justify-center max-w-screen-lg w-full;
+}
+
+.header__icon {
+  @apply h-6 w-6 absolute top-2 left-2 text-slate-400;
+}
+
+.header__input {
+  @apply form-input w-full pl-10 bg-gray-100 border-none placeholder:text-gray-400 focus:ring-0;
+}
+
+.header__shopping-cart {
+  @apply flex justify-center items-center relative w-10 h-10 text-slate-800;
+}
+
+.header__product-counter {
+  @apply absolute text-xs pt-3;
+}
