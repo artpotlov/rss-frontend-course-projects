@@ -8,7 +8,10 @@ const devConfig: Configuration = merge(baseConfig, {
   mode: 'development',
   devtool: 'inline-source-map',
   devServer: {
-    static: path.resolve(__dirname, 'dist'),
+    static: {
+      directory: path.join(__dirname, '.src/assets'),
+      publicPath: './assets',
+    }
   }
 });
 

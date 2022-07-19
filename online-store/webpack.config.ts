@@ -33,7 +33,7 @@ export const baseConfig: Configuration = {
     ],
   },
   resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
+    extensions: ['.tsx', '.ts', '.js', '.json'],
   },
   output: {
     filename: 'boundle.js',
@@ -50,7 +50,7 @@ export const baseConfig: Configuration = {
     ),
     new CopyPlugin({
       patterns: [
-        { from: './src/assets', to: './dist/assets' }
+        { from: './src/assets', to: './assets' }
       ]
     })
   ],
