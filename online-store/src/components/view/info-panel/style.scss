@@ -1,0 +1,7 @@
+.info-panel {
+  @apply flex items-center justify-between mt-4 max-w-screen-xl mx-auto sticky top-0 z-10 py-4 bg-white opacity-95 text-lg px-4;
+
+  &__select {
+    @apply form-select focus:ring-0;
+  }
+}
