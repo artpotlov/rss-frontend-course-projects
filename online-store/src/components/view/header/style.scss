@@ -3,7 +3,7 @@
 }
 
 .header__wrapper {
-  @apply flex gap-4 justify-between items-center h-16 max-w-screen-xl mx-auto;
+  @apply flex gap-4 justify-between items-center h-16 max-w-screen-xl mx-auto px-4;
 }
 
 .header__logo {
@@ -27,5 +27,5 @@
 }
 
 .header__product-counter {
-  @apply absolute text-xs pt-3;
+  @apply absolute rounded-full w-5 h-4 text-center text-xs bottom-0 -right-0 bg-red-500 text-white;
 }

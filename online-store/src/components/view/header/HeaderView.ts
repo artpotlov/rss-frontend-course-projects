@@ -12,7 +12,7 @@ export class HeaderView {
           <svg xmlns="http://www.w3.org/2000/svg" class="header__icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
-          <input type="search" name="searcher" id="searcher" placeholder="Search" class="header__input">
+          <input type="search" name="searcher" id="searcher" placeholder="Search" class="header__input" autofocus autocompete="off">
         </div>
         <div class="header__shopping-cart">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
@@ -32,5 +32,13 @@ export class HeaderView {
     }
 
     this.rootElement.appendChild(result);
+  }
+
+  drawCounter(count = '0') {
+    const counter = document.querySelector<HTMLElement>('.header__product-counter');
+    if (!counter) {
+      return ;
+    }
+    counter.textContent = count;
   }
 }
