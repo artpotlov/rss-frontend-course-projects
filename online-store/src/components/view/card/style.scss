@@ -1,0 +1,47 @@
+.card {
+  @apply relative flex flex-col gap-1;
+
+  &__popular {
+    @apply absolute top-0 left-0 bg-orange-400 text-white text-xs p-2;
+  }
+
+  &__image {
+    @apply block sm:h-80 object-cover;
+  }
+
+  &__main-info {
+    @apply h-24;
+  }
+
+  &__info-wrapper {
+    @apply text-gray-400;
+  }
+
+  &__name {
+    @apply font-semibold text-lg text-black;
+  }
+
+  &__thumb {
+    @apply flex gap-2 mb-2;
+
+    & img {
+      @apply w-6 h-6 object-cover;
+    }
+  }
+
+  &__price {
+    @apply text-lg;
+  }
+
+  &__quantity {
+    @apply text-gray-400 mb-4;
+  }
+
+  &__add-button {
+    @apply bg-indigo-500 text-white py-2 px-4 hover:bg-indigo-400 active:bg-indigo-600 duration-300;
+  }
+
+  &__in-cart {
+    @apply bg-red-500 hover:bg-red-400 active:bg-red-600;
+  }
+}
