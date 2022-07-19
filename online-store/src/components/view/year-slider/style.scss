@@ -1,0 +1,33 @@
+@import '~nouislider/dist/nouislider.css';
+
+.year-slider {
+  @apply pb-4 border-b border-gray-300 mb-4;
+
+  &__title {
+    @apply mb-4;
+  }
+
+  &__value-wrapper {
+    @apply flex justify-between items-center mt-2;
+  }
+
+  &__slider {
+    height: 5px;
+
+    & .noUi-connect {
+      background-color: gray;
+    }
+    
+    & .noUi-handle {
+      height: 20px;
+      width: 20px;
+      border-radius: 999px;
+      top: -10px;
+      right: -10px;
+    }
+    
+    & .noUi-handle::after, & .noUi-handle::before {
+      display: none;
+    }
+  }
+}
