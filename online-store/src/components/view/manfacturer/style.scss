@@ -1,0 +1,16 @@
+.manufacture {
+  @apply pb-4 border-b border-gray-300 mb-4;
+
+  &__list {
+    @apply flex flex-col gap-1 mt-4;
+  }
+
+  &__item {
+    @apply flex items-center gap-2;
+  }
+
+  &__checkbox {
+    @apply form-checkbox;
+  }
+}
+
