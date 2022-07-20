@@ -13,7 +13,7 @@ export class DataModel {
   }
 
   filterName(data: IProduct[], name: string) {
-    return data.filter((product) => product.name.includes(name));
+    return data.filter((product) => product.name.toLowerCase().includes(name.toLowerCase()));
   }
 
   filterSort(data: IProduct[], type: string) {
