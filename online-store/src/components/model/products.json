@@ -206,7 +206,7 @@
     "category": ["running"],
     "gender": "man",
     "color": "White",
-    "size": 11,
+    "size": 6,
     "year": 2021,
     "quantity": 5,
     "popular": true,
@@ -221,12 +221,72 @@
   },
   {
     "id": 2002,
+    "name": "Ultraboost 21",
+    "manufacturer": "Adidas",
+    "category": ["running"],
+    "gender": "man",
+    "color": "White",
+    "size": 7,
+    "year": 2021,
+    "quantity": 5,
+    "popular": true,
+    "price": 190,
+    "images": [
+      "./assets/adidas/ultraboost-21/white/1.webp",
+      "./assets/adidas/ultraboost-21/white/2.webp",
+      "./assets/adidas/ultraboost-21/white/3.webp",
+      "./assets/adidas/ultraboost-21/white/4.webp",
+      "./assets/adidas/ultraboost-21/white/5.webp"
+    ]
+  },
+  {
+    "id": 2003,
+    "name": "Ultraboost 21",
+    "manufacturer": "Adidas",
+    "category": ["running"],
+    "gender": "man",
+    "color": "White",
+    "size": 8,
+    "year": 2021,
+    "quantity": 5,
+    "popular": true,
+    "price": 190,
+    "images": [
+      "./assets/adidas/ultraboost-21/white/1.webp",
+      "./assets/adidas/ultraboost-21/white/2.webp",
+      "./assets/adidas/ultraboost-21/white/3.webp",
+      "./assets/adidas/ultraboost-21/white/4.webp",
+      "./assets/adidas/ultraboost-21/white/5.webp"
+    ]
+  },
+  {
+    "id": 2004,
+    "name": "Ultraboost 21",
+    "manufacturer": "Adidas",
+    "category": ["running"],
+    "gender": "man",
+    "color": "White",
+    "size": 12,
+    "year": 2021,
+    "quantity": 5,
+    "popular": true,
+    "price": 190,
+    "images": [
+      "./assets/adidas/ultraboost-21/white/1.webp",
+      "./assets/adidas/ultraboost-21/white/2.webp",
+      "./assets/adidas/ultraboost-21/white/3.webp",
+      "./assets/adidas/ultraboost-21/white/4.webp",
+      "./assets/adidas/ultraboost-21/white/5.webp"
+    ]
+  },
+  {
+    "id": 2005,
     "name": "Racer TR 21",
     "manufacturer": "Adidas",
     "category": ["sportswear"],
     "gender": "man",
     "color": "black",
-    "size": 9,
+    "size": 7,
     "year": 2021,
     "quantity": 57,
     "popular": false,
@@ -237,6 +297,146 @@
       "./assets/adidas/racer-tr21/black/3.webp",
       "./assets/adidas/racer-tr21/black/4.webp",
       "./assets/adidas/racer-tr21/black/5.webp"
+    ]
+  },
+  {
+    "id": 2006,
+    "name": "Racer TR 21",
+    "manufacturer": "Adidas",
+    "category": ["sportswear"],
+    "gender": "man",
+    "color": "black",
+    "size": 8,
+    "year": 2021,
+    "quantity": 105,
+    "popular": false,
+    "price": 100,
+    "images": [
+      "./assets/adidas/racer-tr21/black/1.webp",
+      "./assets/adidas/racer-tr21/black/2.webp",
+      "./assets/adidas/racer-tr21/black/3.webp",
+      "./assets/adidas/racer-tr21/black/4.webp",
+      "./assets/adidas/racer-tr21/black/5.webp"
+    ]
+  },
+  {
+    "id": 2007,
+    "name": "Racer TR 21",
+    "manufacturer": "Adidas",
+    "category": ["sportswear"],
+    "gender": "man",
+    "color": "black",
+    "size": 9,
+    "year": 2021,
+    "quantity": 105,
+    "popular": false,
+    "price": 100,
+    "images": [
+      "./assets/adidas/racer-tr21/black/1.webp",
+      "./assets/adidas/racer-tr21/black/2.webp",
+      "./assets/adidas/racer-tr21/black/3.webp",
+      "./assets/adidas/racer-tr21/black/4.webp",
+      "./assets/adidas/racer-tr21/black/5.webp"
+    ]
+  },
+  {
+    "id": 2008,
+    "name": "Racer TR 21",
+    "manufacturer": "Adidas",
+    "category": ["sportswear"],
+    "gender": "man",
+    "color": "black",
+    "size": 10,
+    "year": 2021,
+    "quantity": 105,
+    "popular": false,
+    "price": 100,
+    "images": [
+      "./assets/adidas/racer-tr21/black/1.webp",
+      "./assets/adidas/racer-tr21/black/2.webp",
+      "./assets/adidas/racer-tr21/black/3.webp",
+      "./assets/adidas/racer-tr21/black/4.webp",
+      "./assets/adidas/racer-tr21/black/5.webp"
+    ]
+  },
+  {
+    "id": 2009,
+    "name": "Racer TR 21",
+    "manufacturer": "Adidas",
+    "category": ["sportswear"],
+    "gender": "man",
+    "color": "black",
+    "size": 11,
+    "year": 2021,
+    "quantity": 105,
+    "popular": false,
+    "price": 100,
+    "images": [
+      "./assets/adidas/racer-tr21/black/1.webp",
+      "./assets/adidas/racer-tr21/black/2.webp",
+      "./assets/adidas/racer-tr21/black/3.webp",
+      "./assets/adidas/racer-tr21/black/4.webp",
+      "./assets/adidas/racer-tr21/black/5.webp"
+    ]
+  },
+  {
+    "id": 2010,
+    "name": "Racer TR 21",
+    "manufacturer": "Adidas",
+    "category": ["sportswear"],
+    "gender": "man",
+    "color": "black",
+    "size": 12,
+    "year": 2021,
+    "quantity": 105,
+    "popular": false,
+    "price": 100,
+    "images": [
+      "./assets/adidas/racer-tr21/black/1.webp",
+      "./assets/adidas/racer-tr21/black/2.webp",
+      "./assets/adidas/racer-tr21/black/3.webp",
+      "./assets/adidas/racer-tr21/black/4.webp",
+      "./assets/adidas/racer-tr21/black/5.webp"
+    ]
+  },
+  {
+    "id": 1011,
+    "name": "Air Force 1",
+    "manufacturer": "Nike",
+    "category": ["skateboarding"],
+    "gender": "man",
+    "color": "White",
+    "size": 10,
+    "year": 2021,
+    "quantity": 5,
+    "popular": true,
+    "price": 110,
+    "images": [
+      "./assets/nike/air-force/white/1.webp",
+      "./assets/nike/air-force/white/2.webp",
+      "./assets/nike/air-force/white/3.webp",
+      "./assets/nike/air-force/white/4.webp",
+      "./assets/nike/air-force/white/5.webp"
+    ]
+  },
+  {
+    "id": 1012,
+    "name": "Air Force 1",
+    "manufacturer": "Nike",
+    "category": ["skateboarding"],
+    "gender": "man",
+    "color": "White",
+    "size": 9,
+    "year": 2021,
+    "quantity": 5,
+    "popular": true,
+    "price": 110,
+    "images": [
+      "./assets/nike/air-force/white/1.webp",
+      "./assets/nike/air-force/white/2.webp",
+      "./assets/nike/air-force/white/3.webp",
+      "./assets/nike/air-force/white/4.webp",
+      "./assets/nike/air-force/white/5.webp"
     ]
   }
 ]
