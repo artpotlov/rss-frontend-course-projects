@@ -10,7 +10,8 @@ export class MainView {
     <main class="main">
       <aside class="filter-panel">
         <div class="filter-panel__filters"></div>
-        <button class="filter-panel__button">Reset</button>
+        <button class="filter-panel__button filter-panel__button-rf">Reset filters</button>
+        <button class="filter-panel__button filter-panel__button-rs">Reset settings</button>
       </aside>
       <section class="content"></section>
     </main>
