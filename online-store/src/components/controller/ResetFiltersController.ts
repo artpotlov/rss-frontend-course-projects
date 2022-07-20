@@ -13,14 +13,21 @@ export class ResetFiltersController {
     ) {}
 
   init() {
-    const buttonReset = document.querySelector<HTMLButtonElement>('.filter-panel__button');
-    buttonReset?.addEventListener('click', () => {
-      this.updateCards();
+    const buttonResetFilters = document.querySelector<HTMLButtonElement>('.filter-panel__button-rf');
+    const buttonResetSettings = document.querySelector<HTMLButtonElement>('.filter-panel__button-rs');
+    
+    buttonResetFilters?.addEventListener('click', () => {
+      this.resetFilters();
+      this.updateStates();
+    });
+
+    buttonResetSettings?.addEventListener('click', () => {
+      this.resetSettings();
       this.updateStates();
     });
   }
 
-  private updateCards() {
+  private resetFilters() {
     const filterConditionals: IFilter = { sort: 'name-asc' };
     const conditionals = this.lsController.getFilters();
 
@@ -33,6 +40,15 @@ export class ResetFiltersController {
 
     const filteringData = this.dataModel.updatefilters(filterConditionals);
     this.appView.drawCards(filteringData, this.lsController.getDataCart());
+  }
+
+  private resetSettings() {
+    this.lsController.setFilters({});
+    this.lsController.setDataCart([]);
+
+    const filteringData = this.dataModel.updatefilters({});
+    this.appView.drawCards(filteringData, this.lsController.getDataCart());
+    this.appView.drawCounter([]);
   }
 
   private updateStates() {
