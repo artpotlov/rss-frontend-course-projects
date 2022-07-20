@@ -4,7 +4,7 @@ export class YearSliderView {
   getElement() {
     const template = `
       <div class="year-slider">
-        <h3 class="year-slider__title">Years</h3>
+        <h3 class="year-slider__title">Year</h3>
         <div class="year-slider__slider"></div>
           <div class="year-slider__value-wrapper">
               <div class="year-slider__min">1</div>
