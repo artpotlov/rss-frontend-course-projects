@@ -8,7 +8,7 @@ export class DataModel {
   }
 
   getData() {
-    const data: IProduct[] = products || [];
+    const data = this.data || [];
     return data;
   }
 
