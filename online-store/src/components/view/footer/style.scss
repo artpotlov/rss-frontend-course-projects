@@ -2,11 +2,11 @@
   @apply w-full bg-gray-100;
 
   &__wrapper {
-    @apply flex justify-between max-w-screen-xl mx-auto bg-gray-100 py-8 px-4;
+    @apply flex flex-col gap-4 justify-between max-w-screen-xl mx-auto bg-gray-100 py-8 px-4 sm:flex-row;
   }
 
   &__copyright-wrapper {
-    @apply flex gap-4;
+    @apply flex flex-col gap-4 sm:flex-row;
   }
 
   &__icon {
