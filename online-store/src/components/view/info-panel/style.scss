@@ -1,7 +1,11 @@
 .info-panel {
-  @apply flex items-center justify-between mt-4 max-w-screen-xl mx-auto sticky top-0 z-10 py-4 bg-white opacity-95 text-lg px-4;
+  @apply flex flex-col gap-4 items-center justify-between mt-4 max-w-screen-xl mx-auto top-0 z-10 py-4 bg-white opacity-95 text-lg px-4 sm:sticky sm:flex-row;
+
+  &__title {
+    @apply text-2xl;
+  }
 
   &__select {
-    @apply form-select focus:ring-0;
+    @apply form-select w-full sm:w-auto focus:ring-0;
   }
 }
