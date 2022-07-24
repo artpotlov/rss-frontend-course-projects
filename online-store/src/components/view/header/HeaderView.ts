@@ -7,7 +7,7 @@ export class HeaderView {
     const template = `
     <header class="header">
       <div class="header__wrapper">
-        <div class="header__logo">OnlineStore</div>
+        <div class="header__logo">Online Store</div>
         <div class="header__input-wrapper">
           <svg xmlns="http://www.w3.org/2000/svg" class="header__icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -23,22 +23,25 @@ export class HeaderView {
       </div>
     </header>
     `;
+
     const element = document.createElement('div');
     element.innerHTML = template.trim();
-    const result = element.firstChild;
+    const resultElement = element.firstChild;
 
-    if(!result) {
+    if(!resultElement) {
       return ;
     }
 
-    this.rootElement.appendChild(result);
+    this.rootElement.appendChild(resultElement);
   }
 
   drawCounter(count = '0') {
     const counter = document.querySelector<HTMLElement>('.header__product-counter');
+    
     if (!counter) {
       return ;
     }
+
     counter.textContent = count;
   }
 }
