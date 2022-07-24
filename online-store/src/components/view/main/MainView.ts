@@ -1,58 +1,59 @@
 import './style.scss';
 
 export class MainView {
-  constructor (
-    private readonly rootElement: HTMLElement
-    ) {}
+  constructor (private readonly rootElement: HTMLElement) {}
 
   draw() {
     const template = `
-    <main class="main">
-      <aside class="filter-panel">
-        <div class="filter-panel__filters"></div>
-        <button class="filter-panel__button filter-panel__button-rf">Reset filters</button>
-        <button class="filter-panel__button filter-panel__button-rs">Reset settings</button>
-      </aside>
-      <section class="content"></section>
-    </main>
+      <main class="main">
+        <aside class="filter-panel">
+          <div class="filter-panel__filters"></div>
+          <button class="filter-panel__button filter-panel__button-rf">Reset filters</button>
+          <button class="filter-panel__button filter-panel__button-rs">Reset settings</button>
+        </aside>
+        <section class="content"></section>
+      </main>
     `;
 
     const element = document.createElement('div');
     element.innerHTML = template.trim();
-    const result = element.firstChild;
 
-    if (!result) {
+    const resultElement = element.firstChild;
+
+    if (!resultElement) {
       return ;
     }
 
-    this.rootElement.appendChild(result);
+    this.rootElement.appendChild(resultElement);
   }
 
   drawContent(cardsTemplate: Element[]) {
     const contentElement = this.rootElement.querySelector<HTMLElement>('.content');
-    const errorMessage = document.createElement('h2');
-    errorMessage.textContent = '☹️ Sorry, no matches found';
-    errorMessage.className = 'content__error';
+
+    const errorMessageElement = document.createElement('h2');
+    errorMessageElement.textContent = '☹️ Sorry, no matches found';
+    errorMessageElement.className = 'content__error';
 
     if (!contentElement) {
       return ;
     }
+
     contentElement.innerHTML = '';
 
     if (!cardsTemplate || cardsTemplate.length === 0) {
-      contentElement.appendChild(errorMessage);
+      contentElement.appendChild(errorMessageElement);
       return ;
     }
 
     contentElement.append(...cardsTemplate);
   }
 
-  drawFilters(filtersTemplate: Element) {
-    const filterElement = this.rootElement.querySelector<HTMLElement>('.filter-panel__filters');
+  drawFilters(filterElement: Element) {
+    const filterContainer = this.rootElement.querySelector<HTMLElement>('.filter-panel__filters');
 
-    if (!filterElement) {
+    if (!filterContainer) {
       return ;
     }
-    filterElement.append(filtersTemplate);
+    filterContainer.append(filterElement);
   }
 }
