@@ -1,12 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./src/**/*.{html, ts}'],
+  mode: 'jit',
+  purge: [
+    './dist/**/*.html',
+    './src/**/*.{html,ts}',
+  ],
   theme: {
-    extend: {
-      screens: {
-        '3xl': '1920px',
-      },
-    },
+    extend: {},
   },
   plugins: [
     require('@tailwindcss/forms'),
