@@ -3,7 +3,6 @@
  */
 
 import { HeaderView } from "../../src/components/view/header/HeaderView";
-import '../../src/components/view/header/style.scss';
 
 describe('Testing header view:', () => {
   const template = `
@@ -26,9 +25,6 @@ describe('Testing header view:', () => {
     </header>
   `;
 
-  const templateElement = document.createElement('div');
-  templateElement.innerHTML = template;
-  
   document.body.innerHTML = '<div id="App"></div>';
   const app = document.querySelector<HTMLElement>('#App');
   
@@ -44,7 +40,7 @@ describe('Testing header view:', () => {
 
   test('check draw method', () => {
     headerView.draw();
-    expect(app.firstElementChild).toEqual(templateElement.firstElementChild);
+    expect(app.innerHTML.trim().split(' ').join('')).toBe(template.trim().split(' ').join(''));
   });
 
   test('check drawCounter method without parameter', () => {
