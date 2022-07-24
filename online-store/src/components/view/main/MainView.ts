@@ -48,12 +48,13 @@ export class MainView {
     contentElement.append(...cardsTemplate);
   }
 
-  drawFilters(filterElement: Element) {
+  drawFilter(filterElement: Element) {
     const filterContainer = this.rootElement.querySelector<HTMLElement>('.filter-panel__filters');
 
-    if (!filterContainer) {
+    if (!filterContainer || !filterElement) {
       return ;
     }
+
     filterContainer.append(filterElement);
   }
 }

@@ -77,43 +77,43 @@ export class AppView {
       return ;
     }
 
-    this.mainView.drawFilters(priceSliderElement);
+    this.mainView.drawFilter(priceSliderElement);
 
     if (!yearSliderElement) {
       return ;
     }
 
-    this.mainView.drawFilters(yearSliderElement);
+    this.mainView.drawFilter(yearSliderElement);
 
     if (!quantitySliderElement) {
       return ;
     }
 
-    this.mainView.drawFilters(quantitySliderElement);
+    this.mainView.drawFilter(quantitySliderElement);
 
     if (!manufactureElement) {
       return ;
     }
 
-    this.mainView.drawFilters(manufactureElement);
+    this.mainView.drawFilter(manufactureElement);
 
     if (!colorElement) {
       return ;
     }
 
-    this.mainView.drawFilters(colorElement);
+    this.mainView.drawFilter(colorElement);
 
     if (!sizeElement) {
       return ;
     }
 
-    this.mainView.drawFilters(sizeElement);
+    this.mainView.drawFilter(sizeElement);
 
     if (!popularElement) {
       return ;
     }
 
-    this.mainView.drawFilters(popularElement);
+    this.mainView.drawFilter(popularElement);
   }
 
   drawFooter() {
