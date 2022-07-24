@@ -6,7 +6,7 @@ export class InfoPanelView {
   draw() {
     const template = `
     <section class="info-panel">
-      <div>Men Shoes</div>
+      <div class="info-panel__title">Men Shoes</div>
         <select name="sortBy" id="sort-by" class="info-panel__select">
           <option value="" disabled>Sort By</option>
           <option value="name-asc">Name ascending</option>
