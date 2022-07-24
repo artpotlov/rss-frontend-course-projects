@@ -44,8 +44,8 @@ export class PriceController {
     }
 
     slider.noUiSlider.on('update', (values) => {
-      sliderMin.innerHTML = values[0] as string;
-      sliderMax.innerHTML = values[1] as string;
+      sliderMin.innerHTML = values[0].toString();
+      sliderMax.innerHTML = values[1].toString();
       this.updateCards([values[0] as number, values[1] as number]);
     });
 
