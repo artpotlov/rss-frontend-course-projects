@@ -19,6 +19,7 @@
         "@typescript-eslint",
         "prettier"
     ],
+    "ignorePatterns": "webpack.config.js",
     "rules": {
         "@typescript-eslint/no-explicit-any": "error",
         "prettier/prettier": "error"
