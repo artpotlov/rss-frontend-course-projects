@@ -41,6 +41,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
+      title: 'Async race',
       template: './src/index.html',
     }),
   ]
