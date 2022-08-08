@@ -7,6 +7,22 @@
   <title><%= htmlWebpackPlugin.options.title %></title>
 </head>
 <body>
-  <div id="app"></div>
+  <header class="header">
+    <nav class="header__nav">
+      <button class="button button_color_primary button_size_md" data-role="page-garage">GARAGE</button>
+      <button class="button button_color_primary button_size_md" data-role="page-winners">WINNERS</button>
+    </nav>
+  </header>
+  <main class="main">
+    <section class="garage"></section>
+    <section class="winners"></section>
+  </main>
+  <footer class="footer">
+    <nav class="footer__nav">
+      <a href="https://rs.school/js" class="link">RS School</a>
+      <a href="https://github.com/artpotlov" class="link">GitHub</a>
+      <span>Copyright 2022</span>
+    </nav>
+  </footer>
 </body>
 </html>
