@@ -22,6 +22,7 @@
     "ignorePatterns": "webpack.config.js",
     "rules": {
         "@typescript-eslint/no-explicit-any": "error",
+        "import/prefer-default-export": "off",
         "prettier/prettier": "error"
     }
 }
