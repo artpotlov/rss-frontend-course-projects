@@ -58,7 +58,7 @@ export function getRoadTemplate({ id, name, color }: ICar) {
           <button class="button road__control-engine-button" data-role="button-start-engine" data-id="${id}">A</button>
           <button class="button road__control-engine-button" data-role="button-stop-engine" data-id="${id}" disabled>B</button>
         </div>
-        <div class="road__car-track">
+        <div class="road__car-track" data-id="${id}">
           <div class="road__car" data-id="${id}">
             ${getCarTemplate(color)}
           </div>
