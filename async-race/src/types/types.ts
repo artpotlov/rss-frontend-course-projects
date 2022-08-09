@@ -40,3 +40,7 @@ export interface IWinners {
 
 export type Sort = 'id' | 'wins' | 'time';
 export type Order = 'ASC' | 'DESC';
+
+export interface IAnimationID {
+  [key: number]: number;
+}
