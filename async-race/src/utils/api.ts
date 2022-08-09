@@ -3,7 +3,6 @@ import {
   ICar,
   ICars,
   IWinner,
-  IWinnerCar,
   IWinnerCars,
   Order,
   RequestMethod,
@@ -14,6 +13,7 @@ const API_URL = 'http://localhost:3000';
 
 const API_URL_GARAGE = `${API_URL}/garage`;
 const API_URL_WINNERS = `${API_URL}/winners`;
+const API_URL_ENGINE = `${API_URL}/engine`;
 
 export async function getCars(page = 1, limit = 7): Promise<ICars> {
   const queryParams = `?_limit=${limit}&_page=${page}`;
@@ -66,6 +66,27 @@ export async function updateCar({ id, ...carParams }: ICar): Promise<number> {
     body: JSON.stringify(carParams),
   };
   const response = await fetch(url, params);
+  return response.status;
+}
+
+export async function startEngine(id: number) {
+  const url = `${API_URL_ENGINE}?id=${id}&status=started`;
+  const response = await fetch(url, { method: RequestMethod.PATCH });
+  return {
+    status: response.status,
+    params: await response.json(),
+  };
+}
+
+export async function stopEngine(id: number) {
+  const url = `${API_URL_ENGINE}?id=${id}&status=stopped`;
+  const response = await fetch(url, { method: RequestMethod.PATCH });
+  return response.status;
+}
+
+export async function driveEngine(id: number) {
+  const url = `${API_URL_ENGINE}?id=${id}&status=drive`;
+  const response = await fetch(url, { method: RequestMethod.PATCH });
   return response.status;
 }
 
