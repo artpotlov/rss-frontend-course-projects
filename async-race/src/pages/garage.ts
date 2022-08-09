@@ -1,4 +1,5 @@
 import * as UI from '../ui/ui';
+import { animation } from '../utils/animation';
 import * as API from '../utils/api';
 import { getRandomCar } from '../utils/gen-random-car';
 import * as View from '../utils/view';
@@ -126,6 +127,65 @@ function roadEvent() {
           const deleteCarId = +target.dataset.id;
           await API.deleteCar(deleteCarId);
           updateTrackLine();
+        }
+      }
+
+      if (target.dataset.role === 'button-start-engine') {
+        if (target.dataset.id) {
+          const roadCarTrack = garageElement.querySelector<HTMLElement>(
+            `.road__car-track[data-id="${target.dataset.id}"]`,
+          );
+          const startEngineElement = garageElement.querySelector<HTMLButtonElement>(
+            `[data-role="button-start-engine"][data-id="${target.dataset.id}"`,
+          );
+          const stopEngineElement = garageElement.querySelector<HTMLButtonElement>(
+            `[data-role="button-stop-engine"][data-id="${target.dataset.id}"]`,
+          );
+          const carElement = garageElement.querySelector<HTMLElement>(
+            `.road__car[data-id="${target.dataset.id}"]`,
+          );
+
+          if (!roadCarTrack || !startEngineElement || !stopEngineElement || !carElement) {
+            return;
+          }
+
+          const engineParams = await API.startEngine(+target.dataset.id);
+
+          if (engineParams.status === 200) {
+            startEngineElement.disabled = true;
+            stopEngineElement.disabled = false;
+            const duration = engineParams.params.distance / engineParams.params.velocity;
+            animation('start', carElement, roadCarTrack, duration, +target.dataset.id);
+            const driveStatus = await API.driveEngine(+target.dataset.id);
+            if (driveStatus === 500) {
+              animation('stop', carElement, roadCarTrack, duration, +target.dataset.id);
+            }
+          }
+        }
+      }
+
+      if (target.dataset.role === 'button-stop-engine') {
+        if (target.dataset.id) {
+          const startEngineElement = garageElement.querySelector<HTMLButtonElement>(
+            `[data-role="button-start-engine"][data-id="${target.dataset.id}"`,
+          );
+          const stopEngineElement = garageElement.querySelector<HTMLButtonElement>(
+            `[data-role="button-stop-engine"][data-id="${target.dataset.id}"]`,
+          );
+          const carElement = garageElement.querySelector<HTMLElement>(
+            `.road__car[data-id="${target.dataset.id}"]`,
+          );
+
+          if (!startEngineElement || !stopEngineElement || !carElement) {
+            return;
+          }
+
+          const statusEngine = await API.stopEngine(+target.dataset.id);
+          if (statusEngine === 200) {
+            animation('reset', carElement, carElement, 0, +target.dataset.id);
+            startEngineElement.disabled = false;
+            stopEngineElement.disabled = true;
+          }
         }
       }
     }
