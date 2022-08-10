@@ -8,8 +8,7 @@ export class DataModel {
   }
 
   getData() {
-    const data = this.data || [];
-    return data;
+    return this.data || [];
   }
 
   filterName(data: IProduct[], name: string) {
