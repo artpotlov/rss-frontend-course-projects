@@ -46,7 +46,7 @@ export class YearController {
     slider.noUiSlider.on('update', (values) => {
       sliderMin.innerHTML = values[0].toString();
       sliderMax.innerHTML = values[1].toString();
-      this.updateCards({ min: +values[0], max: +values[0] });
+      this.updateCards({ min: +values[0], max: +values[1] });
     });
 
   }
