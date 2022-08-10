@@ -2,7 +2,7 @@ import { DataModel } from "../model/DataModel";
 import { AppView } from "../view/AppView";
 import { LSController } from "./LSController";
 import * as noUiSlider from 'nouislider';
-import { IFilter } from "../base/interface";
+import { IFilter, IQuantity } from "../base/interface";
 
 export class QuantityController {
   constructor(private readonly dataModel: DataModel, private readonly appView: AppView, private readonly lsController: LSController) {}
@@ -40,36 +40,36 @@ export class QuantityController {
     const filterValue = this.getFilter();
 
     if (filterValue) {
-      slider.noUiSlider.set(filterValue)
+      slider.noUiSlider.set([filterValue.min, filterValue.max]);
     }
 
     slider.noUiSlider.on('update', (values) => {
-      sliderMin.innerHTML = values[0] as string;
-      sliderMax.innerHTML = values[1] as string;
-      this.updateCards([values[0] as number, values[1] as number]);
+      sliderMin.innerHTML = values[0].toString();
+      sliderMax.innerHTML = values[1].toString();
+      this.updateCards({ min: +values[0], max: +values[1]});
     });
 
   }
 
-  private getFilter() {
+  private getFilter(): IQuantity {
     const conditionals = this.lsController.getFilters();
 
     if (conditionals?.quantity) {
       return conditionals.quantity;
     }
 
-    return [1, 1000];
+    return { min: 1, max: 1000 };
   }
 
-  private updateCards(value?: [number, number]) {
-    let filterConditionals: IFilter = { quantity: [1, 1000] };
+  private updateCards(value?: IQuantity) {
+    let filterConditionals: IFilter = { quantity: { min: 1, max: 1000} };
     const conditionals = this.lsController.getFilters();
 
     if (conditionals) {
       filterConditionals = conditionals;
     }
 
-    filterConditionals.quantity = value || [1, 1000];
+    filterConditionals.quantity = value || { min: 1, max: 1000 };
     this.lsController.setFilters(filterConditionals);
 
     const filteringData = this.dataModel.updatefilters(filterConditionals);
@@ -87,6 +87,6 @@ export class QuantityController {
       return ;
     }
     const filterValues = this.getFilter();
-      slider.noUiSlider.set(filterValues);
+      slider.noUiSlider.set([filterValues.min, filterValues.max]);
   }
 }

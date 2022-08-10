@@ -1,4 +1,4 @@
-import { IFilter } from "../base/interface";
+import { IFilter, SortType } from "../base/interface";
 import { DataModel } from "../model/DataModel";
 import { AppView } from "../view/AppView";
 import { LSController } from "./LSController";
@@ -27,7 +27,7 @@ export class SortController {
   }
 
   private updateCards(value = 'name-asc') {
-    let filterConditionals: IFilter = { sort: 'name-asc' };
+    let filterConditionals: IFilter = { sort: SortType.nameAsc };
     const conditionals = this.lsController.getFilters();
 
     if (conditionals) {
@@ -54,10 +54,10 @@ export class SortController {
     }
 
     let valueIndex = 1;
-    if (values.sort === 'name-asc') valueIndex = 1;
-    if (values.sort === 'name-desc') valueIndex = 2;
-    if (values.sort === 'year-asc') valueIndex = 3;
-    if (values.sort === 'year-desc') valueIndex = 4;
+    if (values.sort === SortType.nameAsc) valueIndex = 1;
+    if (values.sort === SortType.nameDesc) valueIndex = 2;
+    if (values.sort === SortType.yearAsc) valueIndex = 3;
+    if (values.sort === SortType.yearDesc) valueIndex = 4;
 
     selectElement.selectedIndex = valueIndex;
   }

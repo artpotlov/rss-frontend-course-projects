@@ -2,7 +2,7 @@ import { DataModel } from "../model/DataModel";
 import { AppView } from "../view/AppView";
 import { LSController } from "./LSController";
 import * as noUiSlider from 'nouislider';
-import { IFilter } from "../base/interface";
+import { IFilter, IYear } from "../base/interface";
 
 export class YearController {
   constructor(private readonly dataModel: DataModel, private readonly appView: AppView, private readonly lsController: LSController) {}
@@ -40,36 +40,36 @@ export class YearController {
     const filterValue = this.getFilter();
 
     if (filterValue) {
-      slider.noUiSlider.set(filterValue)
+      slider.noUiSlider.set([filterValue.min, filterValue.max]);
     }
 
     slider.noUiSlider.on('update', (values) => {
-      sliderMin.innerHTML = values[0] as string;
-      sliderMax.innerHTML = values[1] as string;
-      this.updateCards([values[0] as number, values[1] as number]);
+      sliderMin.innerHTML = values[0].toString();
+      sliderMax.innerHTML = values[1].toString();
+      this.updateCards({ min: +values[0], max: +values[0] });
     });
 
   }
 
-  private getFilter() {
+  private getFilter(): IYear {
     const conditionals = this.lsController.getFilters();
 
     if (conditionals?.year) {
       return conditionals.year;
     }
 
-    return [2019, 2022];
+    return { min: 2019, max: 2022 };
   }
 
-  private updateCards(value?: [number, number]) {
-    let filterConditionals: IFilter = { year: [2019, 2022] };
+  private updateCards(value?: IYear) {
+    let filterConditionals: IFilter = { year: { min: 2019, max: 2022 } };
     const conditionals = this.lsController.getFilters();
 
     if (conditionals) {
       filterConditionals = conditionals;
     }
 
-    filterConditionals.year = value || [2019, 2022];
+    filterConditionals.year = value || { min: 2019, max: 2022 };
     this.lsController.setFilters(filterConditionals);
 
     const filteringData = this.dataModel.updatefilters(filterConditionals);
@@ -87,6 +87,6 @@ export class YearController {
       return ;
     }
     const filterValues = this.getFilter();
-      slider.noUiSlider.set(filterValues);
+      slider.noUiSlider.set([filterValues.min, filterValues.max]);
   }
 }

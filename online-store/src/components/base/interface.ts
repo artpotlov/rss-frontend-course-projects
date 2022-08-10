@@ -13,12 +13,34 @@ export interface IProduct {
   images: string[],
 }
 
+export interface IPrice {
+  min: number,
+  max: number,
+}
+
+export interface IYear {
+  min: number, 
+  max: number,
+}
+
+export interface IQuantity {
+  min: number,
+  max: number,
+}
+
+export enum SortType {
+  nameAsc = 'name-asc',
+  nameDesc = 'name-desc',
+  yearAsc = 'year-asc',
+  yearDesc = 'year-desc',
+}
+
 export interface IFilter {
   name?: string,
   sort?: string,
-  price?: [number, number],
-  year?: [number, number],
-  quantity?: [number, number],
+  price?: IPrice,
+  year?: IYear,
+  quantity?: IQuantity,
   manufacture?: string[],
   color?: string[],
   size?: string[],

@@ -2,7 +2,7 @@ import { DataModel } from "../model/DataModel";
 import { AppView } from "../view/AppView";
 import { LSController } from "./LSController";
 import * as noUiSlider from 'nouislider';
-import { IFilter } from "../base/interface";
+import { IFilter, IPrice } from "../base/interface";
 
 export class PriceController {
   constructor(private readonly dataModel: DataModel, private readonly appView: AppView, private readonly lsController: LSController) {}
@@ -40,36 +40,36 @@ export class PriceController {
     const filterValue = this.getFilter();
 
     if (filterValue) {
-      slider.noUiSlider.set(filterValue)
+      slider.noUiSlider.set([filterValue.min, filterValue.max])
     }
 
     slider.noUiSlider.on('update', (values) => {
       sliderMin.innerHTML = values[0].toString();
       sliderMax.innerHTML = values[1].toString();
-      this.updateCards([values[0] as number, values[1] as number]);
+      this.updateCards({ min: +values[0], max: +values[1] });
     });
 
   }
 
-  private getFilter() {
+  private getFilter(): IPrice {
     const conditionals = this.lsController.getFilters();
 
     if (conditionals?.price) {
       return conditionals.price;
     }
 
-    return [1, 1000];
+    return { min: 1, max: 1000 };
   }
 
-  private updateCards(value?: [number, number]) {
-    let filterConditionals: IFilter = { price: [1, 1000] };
+  private updateCards(value?: IPrice) {
+    let filterConditionals: IFilter = { price: { min: 1, max: 1000 } };
     const conditionals = this.lsController.getFilters();
 
     if (conditionals) {
       filterConditionals = conditionals;
     }
 
-    filterConditionals.price = value || [1, 1000];
+    filterConditionals.price = value || { min: 1, max: 1000 };
     this.lsController.setFilters(filterConditionals);
 
     const filteringData = this.dataModel.updatefilters(filterConditionals);
@@ -87,6 +87,6 @@ export class PriceController {
       return ;
     }
     const filterValues = this.getFilter();
-      slider.noUiSlider.set(filterValues);
+      slider.noUiSlider.set([filterValues.min, filterValues.max]);
   }
 }
