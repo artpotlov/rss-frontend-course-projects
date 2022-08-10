@@ -1,4 +1,4 @@
-import { IFilter, IProduct } from '../base/interface';
+import { IFilter, IPrice, IProduct, IQuantity, IYear } from '../base/interface';
 import products from './products.json';
 
 export class DataModel {
@@ -45,16 +45,16 @@ export class DataModel {
     return tmpData;
   }
 
-  filterPrice(data: IProduct[], price: [number, number]) {
-    return data.filter((product) => product.price >= price[0] && product.price <= price[1]);
+  filterPrice(data: IProduct[], price: IPrice) {
+    return data.filter((product) => product.price >= price.min && product.price <= price.max);
   }
 
-  filterYear(data: IProduct[], year: [number, number]) {
-    return data.filter((product) => product.year >= year[0] && product.year <= year[1]);
+  filterYear(data: IProduct[], year: IYear) {
+    return data.filter((product) => product.year >= year.min && product.year <= year.max);
   }
 
-  filterQuantity(data: IProduct[], quantity: [number, number]) {
-    return data.filter((product) => product.quantity >= quantity[0] && product.quantity <= quantity[1]);
+  filterQuantity(data: IProduct[], quantity: IQuantity) {
+    return data.filter((product) => product.quantity >= quantity.min && product.quantity <= quantity.max);
   }
 
   filterManufacture(data: IProduct[], manufacture: string[]) {
