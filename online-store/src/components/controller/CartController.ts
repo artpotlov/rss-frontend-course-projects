@@ -19,21 +19,18 @@ export class CartController {
       }
 
       if (target instanceof HTMLButtonElement) {
-        let cart = this.lsController.getDataCart();
-        if (!cart) {
-          cart = [];
-        }
+        const cart = this.lsController.getDataCart() || [];
         const targetID = target.parentElement?.dataset.id;
         if (!targetID) {
           return ;
         }
         
         if(target.classList.contains('card__in-cart')) {
-          cart = cart.filter(e => e !== targetID);
+          const newCart = cart.filter(e => e !== targetID);
           target.textContent = 'Add to cart';
           target.classList.remove('card__in-cart');
           counter.textContent = cart.length.toString();
-          this.lsController.setDataCart(cart);
+          this.lsController.setDataCart(newCart);
           return ;
         }
 
