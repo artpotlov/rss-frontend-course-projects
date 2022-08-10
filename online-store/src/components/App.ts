@@ -33,13 +33,13 @@ export class App {
   private readonly lsController = new LSController();
   private readonly resetFiltersController: ResetFiltersController;
 
-  constructor (app: HTMLElement) {
+  constructor (appElement: HTMLElement) {
     this.dataModel = new DataModel();
 
     this.appView = new AppView(
-      new HeaderView(app),
-      new InfoPanelView(app),
-      new MainView(app),
+      new HeaderView(appElement),
+      new InfoPanelView(appElement),
+      new MainView(appElement),
       new CardView(),
       new PriceSliderView(),
       new YearSliderView(),
@@ -48,7 +48,7 @@ export class App {
       new ColorView(),
       new SizeView(),
       new PopularView(),
-      new FooterView(app)
+      new FooterView(appElement)
     );
     
     this.appController = new AppController(
