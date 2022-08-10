@@ -26,16 +26,16 @@ describe('Check DataModel class:', () => {
   });
 
   test('check price price filter', () => {
-    expect(dataModel.filterPrice(products, [0, 0])).toHaveLength(0);
-    expect(dataModel.filterPrice(products, [1000, 2000])).toHaveLength(0);
-    expect(dataModel.filterPrice(products, [101, 222])).toHaveLength(7);
+    expect(dataModel.filterPrice(products, { min: 0, max: 0} )).toHaveLength(0);
+    expect(dataModel.filterPrice(products, { min: 1000, max: 2000} )).toHaveLength(0);
+    expect(dataModel.filterPrice(products, { min: 101, max: 222} )).toHaveLength(7);
   });
   
   test('check year filter', () => {
-    expect(dataModel.filterYear(products, [0, 0])).toHaveLength(0);
-    expect(dataModel.filterYear(products, [2023, 2024])).toHaveLength(0);
-    expect(dataModel.filterYear(products, [2019, 2021])).toHaveLength(13);
-    expect(dataModel.filterYear(products, [2022, 2022])).toHaveLength(9);
+    expect(dataModel.filterYear(products, { min: 0, max: 0 })).toHaveLength(0);
+    expect(dataModel.filterYear(products, { min: 2023, max: 2024 })).toHaveLength(0);
+    expect(dataModel.filterYear(products, { min: 2019, max: 2021 })).toHaveLength(13);
+    expect(dataModel.filterYear(products, { min: 2022, max: 2022 })).toHaveLength(9);
   });
 
   test('check manufacture filter', () => {
@@ -70,8 +70,8 @@ describe('Check DataModel class:', () => {
   });
 
   test('check quantity filter', () => {
-    expect(dataModel.filterQuantity(products, [1, 1000])).toEqual(products);
-    expect(dataModel.filterQuantity(products, [1, 1])).toHaveLength(0);
-    expect(dataModel.filterQuantity(products, [1, 44])).toHaveLength(11);
+    expect(dataModel.filterQuantity(products, { min: 1, max: 1000 })).toEqual(products);
+    expect(dataModel.filterQuantity(products, { min: 1, max: 1 })).toHaveLength(0);
+    expect(dataModel.filterQuantity(products, { min: 1, max: 44 })).toHaveLength(11);
   });
 });
