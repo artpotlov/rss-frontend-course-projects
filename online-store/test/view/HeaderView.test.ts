@@ -36,22 +36,26 @@ describe('Testing header view:', () => {
 
   beforeEach(() => {
     app.innerHTML = '';
+    headerView.draw();
   });
 
-  test('check draw method', () => {
-    headerView.draw();
-    expect(app.innerHTML.trim().split(' ').join('')).toBe(template.trim().split(' ').join(''));
+  test('when draw method called, classList should be to contain header', () => {
+    const footerElement = document.querySelector<HTMLElement>('.header');
+    expect(footerElement?.classList).toContain('header');
   });
 
-  test('check drawCounter method without parameter', () => {
-    headerView.draw();
+  test('when draw method called, classList should be to contain header__input-wrapper', () => {
+    const footerElement = document.querySelector<HTMLElement>('.header__input-wrapper');
+    expect(footerElement?.classList).toContain('header__input-wrapper');
+  });
+
+  test('when drawCounter method called without parameter, result should be 0', () => {
     headerView.drawCounter();
     const counter = document.querySelector<HTMLElement>('.header__product-counter');
     expect(counter?.textContent).toBe('0');
   });
 
-  test('check drawCounter method with random parameter', () => {
-    headerView.draw();
+  test('when drawCounter method called with random parameter, result should be to equal random parameter', () => {
     const rndVal = Math.random().toString();
     headerView.drawCounter(rndVal);
     const counter = document.querySelector<HTMLElement>('.header__product-counter');

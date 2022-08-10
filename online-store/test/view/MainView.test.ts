@@ -27,16 +27,15 @@ describe('Testing header view:', () => {
 
   beforeEach(() => {
     app.innerHTML = '';
+    mainView.draw();
   });
 
-  test('check draw method', () => {
-    mainView.draw();
-    expect(app.innerHTML.trim().split(' ').join('')).toBe(template.trim().split(' ').join(''));
+  test('when draw method called, classList should be to contain main', () => {
+    const footerElement = document.querySelector<HTMLElement>('.main');
+    expect(footerElement?.classList).toContain('main');
   });
 
-  test('check drawContent method with cards', () => {
-    mainView.draw();
-
+  test('when drawContent method called with cards, child elements in content should be 3', () => {
     const createCardElement = (text = '') => {
       const cardElement = document.createElement('div');
       cardElement.textContent = 'This is the card template' + text;
@@ -48,12 +47,9 @@ describe('Testing header view:', () => {
     const contentContainer = app.querySelector<HTMLElement>('.content');
 
     expect(contentContainer?.childElementCount).toBe(3);
-    expect(contentContainer?.firstChild?.textContent).toBe('This is the card template 1');
-    expect(contentContainer?.lastChild?.textContent).toBe('This is the card template 3');
   });
 
-  test('check drawContent method without cards', () => {
-    mainView.draw();
+  test('when drawContent called with empty parameter, result should be to equal template string', () => {
     mainView.drawContent([]);
 
     const errorMessageElement = '<h2 class="content__error">☹️ Sorry, no matches found</h2>';
@@ -63,7 +59,7 @@ describe('Testing header view:', () => {
     expect(contentContainer?.innerHTML.trim().split(' ').join('')).toBe(errorMessageElement.trim().split(' ').join(''));
   });
 
-  test('check drawFilter method with filter elements', () => {
+  test('when drawContent method called with filters, child elements in filter block should be 3', () => {
     mainView.draw();
 
     const createFilterElement = (text = '') => {
@@ -79,7 +75,5 @@ describe('Testing header view:', () => {
     const filterContainer = app.querySelector<HTMLElement>('.filter-panel__filters');
 
     expect(filterContainer?.childElementCount).toBe(3);
-    expect(filterContainer?.firstChild?.textContent).toBe('This is the filter 1');
-    expect(filterContainer?.lastChild?.textContent).toBe('This is the filter 3');
   });
 });
