@@ -6,26 +6,6 @@ import { LSController } from "./LSController";
 export class SortController {
   constructor(private readonly dataModel: DataModel, private readonly appView: AppView, private readonly lsController: LSController) {}
 
-  init() {
-    this.updateStates();
-    const selectElement = document.querySelector<HTMLSelectElement>('.info-panel__select');
-
-    if (!selectElement) {
-      return ;
-    }
-
-    selectElement.addEventListener('change', (ev) => {
-      const target = ev.target;
-
-      if (!target) {
-        return ;
-      }
-
-      const targetElement = <HTMLSelectElement>target;
-      this.updateCards(targetElement.value);
-    });
-  }
-
   private updateCards(value = 'name-asc') {
     let filterConditionals: IFilter = { sort: SortType.nameAsc };
     const conditionals = this.lsController.getFilters();
@@ -60,5 +40,29 @@ export class SortController {
     if (values.sort === SortType.yearDesc) valueIndex = 4;
 
     selectElement.selectedIndex = valueIndex;
+  }
+
+  private initSortController() {
+    this.updateStates();
+    const selectElement = document.querySelector<HTMLSelectElement>('.info-panel__select');
+
+    if (!selectElement) {
+      return ;
+    }
+
+    selectElement.addEventListener('change', (ev) => {
+      const target = ev.target;
+
+      if (!target) {
+        return ;
+      }
+
+      const targetElement = <HTMLSelectElement>target;
+      this.updateCards(targetElement.value);
+    });
+  }
+
+  init() {
+    this.initSortController();
   }
 }

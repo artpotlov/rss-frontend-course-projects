@@ -10,16 +10,6 @@ export class PopularController {
     private readonly lsController: LSController
     ) {}
 
-  init() {
-    this.updateStates();
-    const checkbox = document.querySelector<HTMLElement>('.popular__list');
-    checkbox?.addEventListener('click', () => {
-      const checkbox = document.querySelector<HTMLInputElement>('input[type=checkbox][data-popular]');
-      const checkedCheckbox = checkbox?.checked;
-      this.updateCards(checkedCheckbox);
-    });
-  }
-
   private updateCards(value = false) {
     let filterConditionals: IFilter = { popular: false };
     const conditionals = this.lsController.getFilters();
@@ -51,5 +41,19 @@ export class PopularController {
     } else {
       checkbox.checked = false;
     }
+  }
+
+  private initPopularController() {
+    this.updateStates();
+    const checkbox = document.querySelector<HTMLElement>('.popular__list');
+    checkbox?.addEventListener('click', () => {
+      const checkbox = document.querySelector<HTMLInputElement>('input[type=checkbox][data-popular]');
+      const checkedCheckbox = checkbox?.checked;
+      this.updateCards(checkedCheckbox);
+    });
+  }
+
+  init() {
+    this.initPopularController();
   }
 }

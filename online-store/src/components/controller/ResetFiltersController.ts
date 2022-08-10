@@ -12,21 +12,6 @@ export class ResetFiltersController {
     private readonly lsController: LSController
     ) {}
 
-  init() {
-    const buttonResetFilters = document.querySelector<HTMLButtonElement>('.filter-panel__button-rf');
-    const buttonResetSettings = document.querySelector<HTMLButtonElement>('.filter-panel__button-rs');
-    
-    buttonResetFilters?.addEventListener('click', () => {
-      this.resetFilters();
-      this.updateStates();
-    });
-
-    buttonResetSettings?.addEventListener('click', () => {
-      this.resetSettings();
-      this.updateStates();
-    });
-  }
-
   private resetFilters() {
     const filterConditionals: IFilter = { sort: 'name-asc' };
     const conditionals = this.lsController.getFilters();
@@ -53,5 +38,24 @@ export class ResetFiltersController {
 
   private updateStates() {
     this.appController.updateStates();
+  }
+
+  private initResetFilters() {
+    const buttonResetFilters = document.querySelector<HTMLButtonElement>('.filter-panel__button-rf');
+    const buttonResetSettings = document.querySelector<HTMLButtonElement>('.filter-panel__button-rs');
+    
+    buttonResetFilters?.addEventListener('click', () => {
+      this.resetFilters();
+      this.updateStates();
+    });
+
+    buttonResetSettings?.addEventListener('click', () => {
+      this.resetSettings();
+      this.updateStates();
+    });
+  }
+
+  init() {
+    this.initResetFilters();
   }
 }

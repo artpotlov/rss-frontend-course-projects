@@ -10,22 +10,6 @@ export class ColorController {
     private readonly lsController: LSController
     ) {}
 
-  init() {
-    this.updateStates();
-    const checkboxes = document.querySelector<HTMLElement>('.color__list');
-    checkboxes?.addEventListener('click', () => {
-      const checkboxes = document.querySelectorAll<HTMLInputElement>('input[type=checkbox][data-color]');
-      const arrayCheckboxes = Array.from(checkboxes);
-      const checkedCheckboxes = arrayCheckboxes.filter(e => e.checked).reduce((arr: string[], e) => {
-        if (e.dataset.color !== undefined) {
-          arr.push(e.dataset.color);
-        }
-        return arr;
-      }, []);
-      this.updateCards(checkedCheckboxes);
-    });
-  }
-
   private updateCards(value: string[] = []) {
     let filterConditionals: IFilter = { color: [] };
     const conditionals = this.lsController.getFilters();
@@ -57,5 +41,25 @@ export class ColorController {
         e.checked = false;
       }
     })
+  }
+
+  private initColorController () {
+    this.updateStates();
+    const checkboxes = document.querySelector<HTMLElement>('.color__list');
+    checkboxes?.addEventListener('click', () => {
+      const checkboxes = document.querySelectorAll<HTMLInputElement>('input[type=checkbox][data-color]');
+      const arrayCheckboxes = Array.from(checkboxes);
+      const checkedCheckboxes = arrayCheckboxes.filter(e => e.checked).reduce((arr: string[], e) => {
+        if (e.dataset.color !== undefined) {
+          arr.push(e.dataset.color);
+        }
+        return arr;
+      }, []);
+      this.updateCards(checkedCheckboxes);
+    });
+  }
+
+  init() {
+    this.initColorController();
   }
 }

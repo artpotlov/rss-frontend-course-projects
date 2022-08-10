@@ -10,22 +10,6 @@ export class ManufactureController {
     private readonly lsController: LSController
     ) {}
 
-  init() {
-    this.updateStates();
-    const checkboxes = document.querySelector<HTMLElement>('.manufacture__list');
-    checkboxes?.addEventListener('click', () => {
-      const checkboxes = document.querySelectorAll<HTMLInputElement>('input[type=checkbox][data-manufacture]');
-      const arrayCheckboxes = Array.from(checkboxes);
-      const checkedCheckboxes = arrayCheckboxes.filter(e => e.checked).reduce((arr: string[], e) => {
-        if (e.dataset.manufacture !== undefined) {
-          arr.push(e.dataset.manufacture);
-        }
-        return arr;
-      }, []);
-      this.updateCards(checkedCheckboxes);
-    });
-  }
-
   private updateCards(value: string[] = []) {
     let filterConditionals: IFilter = { manufacture: [] };
     const conditionals = this.lsController.getFilters();
@@ -57,5 +41,25 @@ export class ManufactureController {
         e.checked = false;
       }
     })
+  }
+
+  private initManufactureController() {
+    this.updateStates();
+    const checkboxes = document.querySelector<HTMLElement>('.manufacture__list');
+    checkboxes?.addEventListener('click', () => {
+      const checkboxes = document.querySelectorAll<HTMLInputElement>('input[type=checkbox][data-manufacture]');
+      const arrayCheckboxes = Array.from(checkboxes);
+      const checkedCheckboxes = arrayCheckboxes.filter(e => e.checked).reduce((arr: string[], e) => {
+        if (e.dataset.manufacture !== undefined) {
+          arr.push(e.dataset.manufacture);
+        }
+        return arr;
+      }, []);
+      this.updateCards(checkedCheckboxes);
+    });
+  }
+
+  init() {
+    this.initManufactureController();
   }
 }

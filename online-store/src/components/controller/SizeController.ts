@@ -10,22 +10,6 @@ export class SizeController {
     private readonly lsController: LSController
     ) {}
 
-  init() {
-    this.updateStates();
-    const checkboxes = document.querySelector<HTMLElement>('.size__list');
-    checkboxes?.addEventListener('click', () => {
-      const checkboxes = document.querySelectorAll<HTMLInputElement>('input[type=checkbox][data-size]');
-      const arrayCheckboxes = Array.from(checkboxes);
-      const checkedCheckboxes = arrayCheckboxes.filter(e => e.checked).reduce((arr: string[], e) => {
-        if (e.dataset.size !== undefined) {
-          arr.push(e.dataset.size);
-        }
-        return arr;
-      }, []);
-      this.updateCards(checkedCheckboxes);
-    });
-  }
-
   private updateCards(value: string[] = []) {
     let filterConditionals: IFilter = { size: [] };
     const conditionals = this.lsController.getFilters();
@@ -57,5 +41,25 @@ export class SizeController {
         e.checked = false;
       }
     })
+  }
+
+  private initSizeController() {
+    this.updateStates();
+    const checkboxes = document.querySelector<HTMLElement>('.size__list');
+    checkboxes?.addEventListener('click', () => {
+      const checkboxes = document.querySelectorAll<HTMLInputElement>('input[type=checkbox][data-size]');
+      const arrayCheckboxes = Array.from(checkboxes);
+      const checkedCheckboxes = arrayCheckboxes.filter(e => e.checked).reduce((arr: string[], e) => {
+        if (e.dataset.size !== undefined) {
+          arr.push(e.dataset.size);
+        }
+        return arr;
+      }, []);
+      this.updateCards(checkedCheckboxes);
+    });
+  }
+
+  init() {
+    this.initSizeController();
   }
 }
