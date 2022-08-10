@@ -2,7 +2,11 @@ import { DataModel } from '../../src/components/model/DataModel';
 import products from '../../src/components/model/products.json';
 
 describe('Check DataModel class:', () => {
-  const dataModel = new DataModel();
+  let dataModel: DataModel;
+
+  beforeEach(() => {
+    dataModel = new DataModel();
+  });
 
   test('data model should be defined', () => {
     expect(dataModel).toBeDefined();
