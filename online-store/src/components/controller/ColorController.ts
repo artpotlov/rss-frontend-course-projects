@@ -47,15 +47,15 @@ export class ColorController {
     this.updateStates();
     const checkboxes = document.querySelector<HTMLElement>('.color__list');
     checkboxes?.addEventListener('click', () => {
-      const checkboxes = document.querySelectorAll<HTMLInputElement>('input[type=checkbox][data-color]');
-      const arrayCheckboxes = Array.from(checkboxes);
-      const checkedCheckboxes = arrayCheckboxes.filter(e => e.checked).reduce((arr: string[], e) => {
+      const arrayCheckboxes = Array.from(document.querySelectorAll<HTMLInputElement>('input[type=checkbox][data-color]'));
+      const checkedCheckboxes = arrayCheckboxes.filter(e => e.checked)
+      const checkedElements = checkedCheckboxes.reduce((arr: string[], e) => {
         if (e.dataset.color !== undefined) {
           arr.push(e.dataset.color);
         }
         return arr;
       }, []);
-      this.updateCards(checkedCheckboxes);
+      this.updateCards(checkedElements);
     });
   }
 
