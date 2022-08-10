@@ -35,11 +35,10 @@ export class ColorController {
       return ;
     }
     checkboxes.forEach(e => {
-      if (values.color?.includes(e.dataset.color as string)) {
-        e.checked = true;
-      } else {
-        e.checked = false;
+      if (!values.color) {
+        return;
       }
+      e.checked = values.color.includes(e.dataset.color as string);
     })
   }
 
