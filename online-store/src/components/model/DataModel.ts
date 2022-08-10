@@ -15,31 +15,40 @@ export class DataModel {
     return data.filter((product) => product.name.toLowerCase().includes(name.toLowerCase()));
   }
 
+  private sortNameAsc(a: IProduct, b: IProduct) {
+    if (a.name < b.name) return -1;
+    if (a.name > b.name) return 1;
+    return 0;
+  }
+  private sortNameDesc(a: IProduct, b: IProduct) {
+    if (a.name < b.name) return 1;
+    if (a.name > b.name) return -1;
+    return 0;
+  }
+  private sortYearAsc(a: IProduct, b: IProduct) {
+    return a.year - b.year;
+  }
+  private sortYearDesc(a: IProduct, b: IProduct) {
+    return b.year - a.year;
+  }
+
   filterSort(data: IProduct[], type: string) {
     const tmpData = [...data];
 
     if (type === 'name-asc') {
-      tmpData.sort((a, b) => {
-        if (a.name < b.name) return -1;
-        if (a.name > b.name) return 1;
-        return 0;
-      })
+      tmpData.sort((a, b) => this.sortNameAsc(a, b))
     }
 
     if (type === 'name-desc') {
-      tmpData.sort((a, b) => {
-        if (a.name < b.name) return 1;
-        if (a.name > b.name) return -1;
-        return 0;
-      })
+      tmpData.sort((a, b) => this.sortNameDesc(a, b));
     }
 
     if (type === 'year-asc') {
-      tmpData.sort((a, b) => a.year - b.year);
+      tmpData.sort((a, b) => this.sortYearAsc(a, b));
     }
 
     if (type === 'year-desc') {
-      tmpData.sort((a, b) => b.year - a.year);
+      tmpData.sort((a, b) => this.sortYearDesc(a, b));
     }
     return tmpData;
   }
