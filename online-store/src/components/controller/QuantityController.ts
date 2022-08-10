@@ -2,7 +2,7 @@ import { DataModel } from "../model/DataModel";
 import { AppView } from "../view/AppView";
 import { LSController } from "./LSController";
 import * as noUiSlider from 'nouislider';
-import { IFilter, IQuantity } from "../base/interface";
+import { IFilter, IQuantity } from "../base/types";
 
 export class QuantityController {
   constructor(private readonly dataModel: DataModel, private readonly appView: AppView, private readonly lsController: LSController) {}

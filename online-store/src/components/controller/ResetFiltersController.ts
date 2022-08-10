@@ -1,4 +1,4 @@
-import { IFilter } from "../base/interface";
+import { IFilter } from "../base/types";
 import { DataModel } from "../model/DataModel";
 import { AppView } from "../view/AppView";
 import { AppController } from "./AppController";

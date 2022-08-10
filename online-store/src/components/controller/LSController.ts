@@ -1,4 +1,4 @@
-import { IFilter } from "../base/interface";
+import { IFilter } from "../base/types";
 
 export class LSController {
   setFilters(conditionals: IFilter) {

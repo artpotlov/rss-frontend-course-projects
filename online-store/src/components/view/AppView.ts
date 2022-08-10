@@ -1,4 +1,4 @@
-import { IProduct } from "../base/interface";
+import { IProduct } from "../base/types";
 import { FooterView } from "./footer/FooterView";
 import { HeaderView } from "./header/HeaderView";
 import { CardView } from "./card/CardView";

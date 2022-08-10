@@ -2,7 +2,7 @@ import { DataModel } from "../model/DataModel";
 import { AppView } from "../view/AppView";
 import { LSController } from "./LSController";
 import * as noUiSlider from 'nouislider';
-import { IFilter, IYear } from "../base/interface";
+import { IFilter, IYear } from "../base/types";
 
 export class YearController {
   constructor(private readonly dataModel: DataModel, private readonly appView: AppView, private readonly lsController: LSController) {}

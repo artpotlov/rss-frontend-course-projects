@@ -1,4 +1,4 @@
-import { IFilter, SortType } from "../base/interface";
+import { IFilter, SortType } from "../base/types";
 import { DataModel } from "../model/DataModel";
 import { AppView } from "../view/AppView";
 import { LSController } from "./LSController";

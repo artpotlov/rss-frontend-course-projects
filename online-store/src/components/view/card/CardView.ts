@@ -1,5 +1,5 @@
 import './style.scss';
-import { IProduct } from '../../base/interface';
+import { IProduct } from '../../base/types';
 
 export class CardView {
   getElement(

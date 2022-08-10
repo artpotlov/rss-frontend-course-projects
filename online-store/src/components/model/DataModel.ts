@@ -1,4 +1,4 @@
-import { IFilter, IPrice, IProduct, IQuantity, IYear } from '../base/interface';
+import { IFilter, IPrice, IProduct, IQuantity, IYear } from '../base/types';
 import products from './products.json';
 
 export class DataModel {
