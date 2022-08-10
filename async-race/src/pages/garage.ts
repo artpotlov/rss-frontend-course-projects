@@ -84,7 +84,10 @@ async function updateTrackLine() {
     View.draw(UI.getRoadTemplate(car), trackLineElement);
   });
   garageStore.totalCars = response.totalCars;
-  garageStore.totalPages = Math.floor(garageStore.totalCars / 7);
+  garageStore.totalPages =
+    garageStore.totalCars % 7 === 0
+      ? garageStore.totalCars / 7
+      : Math.trunc(garageStore.totalCars / 7) + 1;
   updateHeadTitlesView(garageStore.currentPage, garageStore.totalCars);
   updatePaginationView();
 }
@@ -340,7 +343,10 @@ export async function init() {
 
   const response = await API.getCars(garageStore.currentPage);
   garageStore.totalCars = response.totalCars;
-  garageStore.totalPages = Math.floor(garageStore.totalCars / 7);
+  garageStore.totalPages =
+    garageStore.totalCars % 7 === 0
+      ? garageStore.totalCars / 7
+      : Math.trunc(garageStore.totalCars / 7) + 1;
   updateHeadTitlesView(garageStore.currentPage, garageStore.totalCars);
   response.cars.forEach((car) => {
     View.draw(UI.getRoadTemplate(car), trackLineElement);

@@ -151,7 +151,10 @@ export async function init() {
   winnerElement.innerHTML = '';
   const response = await API.getWinners(winnerStore.currentPage);
   winnerStore.totalWinners = response.totalWinners;
-  winnerStore.totalPages = Math.floor(winnerStore.totalWinners / 10);
+  winnerStore.totalPages =
+    winnerStore.totalWinners % 10 === 0
+      ? winnerStore.totalWinners / 10
+      : Math.trunc(winnerStore.totalWinners / 10) + 1;
 
   View.draw(
     UI.getHeadersWinnersTemplate(winnerStore.currentPage, winnerStore.totalWinners),
