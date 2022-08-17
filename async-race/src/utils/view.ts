@@ -16,3 +16,7 @@ export function drawUpdate(templateString: string, destinationElement: HTMLEleme
   }
   destination.append(...content);
 }
+
+export function removeElement(element: HTMLElement) {
+  element.remove();
+}
