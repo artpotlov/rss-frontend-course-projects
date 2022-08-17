@@ -13,6 +13,79 @@ const winnerStore = {
   },
 };
 
+function updateTableHeadView(column: string) {
+  const winsHeadElement = document.querySelector('[data-role="thead-wins"]');
+  const timeHeadElement = document.querySelector('[data-role="thead-time"]');
+
+  if (!winsHeadElement || !timeHeadElement) {
+    return;
+  }
+
+  if (column === 'wins') {
+    if (winnerStore.sort.type === 'ASC') {
+      winsHeadElement.textContent = 'Wins ↑';
+    } else {
+      winsHeadElement.textContent = 'Wins ↓';
+    }
+
+    timeHeadElement.textContent = 'Best time (seconds)';
+  }
+
+  if (column === 'time') {
+    if (winnerStore.sort.type === 'ASC') {
+      timeHeadElement.textContent = 'Best time (seconds) ↑';
+    } else {
+      timeHeadElement.textContent = 'Best time (seconds) ↓';
+    }
+
+    winsHeadElement.textContent = 'Wins';
+  }
+}
+
+async function clickTheadWins() {
+  const tableElement = document.querySelector<HTMLTableElement>('.winners__table');
+
+  if (!tableElement) {
+    return;
+  }
+
+  winnerStore.sort.field = 'wins';
+  winnerStore.sort.type = winnerStore.sort.type === 'ASC' ? 'DESC' : 'ASC';
+
+  const response = await API.getWinners(
+    winnerStore.currentPage,
+    winnerStore.sort.field,
+    winnerStore.sort.type,
+  );
+
+  tableElement.innerHTML = '';
+
+  View.drawUpdate(UI.getWinnersTemplate(response.winners), tableElement);
+  updateTableHeadView('wins');
+}
+
+async function clickTheadTime() {
+  const tableElement = document.querySelector<HTMLTableElement>('.winners__table');
+
+  if (!tableElement) {
+    return;
+  }
+
+  winnerStore.sort.field = 'time';
+  winnerStore.sort.type = winnerStore.sort.type === 'ASC' ? 'DESC' : 'ASC';
+
+  const response = await API.getWinners(
+    winnerStore.currentPage,
+    winnerStore.sort.field,
+    winnerStore.sort.type,
+  );
+
+  tableElement.innerHTML = '';
+
+  View.drawUpdate(UI.getWinnersTemplate(response.winners), tableElement);
+  updateTableHeadView('time');
+}
+
 function tableEvent() {
   const tableElement = document.querySelector<HTMLTableElement>('.winners__table');
   const tableHeadElement = document.querySelector('.winners__head');
@@ -24,27 +97,11 @@ function tableEvent() {
   tableHeadElement.addEventListener('click', async ({ target }) => {
     if (target instanceof HTMLElement) {
       if (target.dataset.role === 'thead-wins') {
-        winnerStore.sort.field = 'wins';
-        winnerStore.sort.type = winnerStore.sort.type === 'ASC' ? 'DESC' : 'ASC';
-        const response = await API.getWinners(
-          winnerStore.currentPage,
-          winnerStore.sort.field,
-          winnerStore.sort.type,
-        );
-        tableElement.innerHTML = '';
-        View.drawUpdate(UI.getWinnersTemplate(response.winners), tableElement);
+        await clickTheadWins();
       }
 
       if (target.dataset.role === 'thead-time') {
-        winnerStore.sort.field = 'time';
-        winnerStore.sort.type = winnerStore.sort.type === 'ASC' ? 'DESC' : 'ASC';
-        const response = await API.getWinners(
-          winnerStore.currentPage,
-          winnerStore.sort.field,
-          winnerStore.sort.type,
-        );
-        tableElement.innerHTML = '';
-        View.drawUpdate(UI.getWinnersTemplate(response.winners), tableElement);
+        await clickTheadTime();
       }
 
       tableEvent();
@@ -100,37 +157,61 @@ function updatePaginationWinnerView() {
     nextButton.disabled = false;
   }
 
+  if (winnerStore.totalWinners === 0) {
+    prevButton.disabled = true;
+    nextButton.disabled = true;
+  }
+
   currentPageElement.textContent = `Page #${winnerStore.currentPage}`;
+}
+
+async function clickBtnPrev() {
+  winnerStore.currentPage -= 1;
+
+  const response = await API.getWinners(winnerStore.currentPage);
+
+  const tableElement = document.querySelector<HTMLTableElement>('.winners__table');
+
+  if (!tableElement) {
+    return;
+  }
+
+  tableElement.innerHTML = '';
+
+  View.drawUpdate(UI.getWinnersTemplate(response.winners), tableElement);
+  updatePaginationWinnerView();
+  tableEvent();
+}
+
+async function clickBtnNext() {
+  winnerStore.currentPage += 1;
+
+  const response = await API.getWinners(winnerStore.currentPage);
+
+  const tableElement = document.querySelector<HTMLTableElement>('.winners__table');
+
+  if (!tableElement) {
+    return;
+  }
+
+  tableElement.innerHTML = '';
+
+  View.drawUpdate(UI.getWinnersTemplate(response.winners), tableElement);
+  updatePaginationWinnerView();
+  tableEvent();
 }
 
 function paginationEvent() {
   const paginationElement = document.querySelector<HTMLElement>('[data-role="pagination-winners"]');
-  paginationElement?.addEventListener('click', async ({ target }) => {
+
+  paginationElement?.addEventListener('click', ({ target }) => {
     if (target instanceof HTMLButtonElement) {
       if (target.dataset.role === 'button-pagination-prev') {
-        winnerStore.currentPage -= 1;
-        const response = await API.getWinners(winnerStore.currentPage);
-        const tableElement = document.querySelector<HTMLTableElement>('.winners__table');
-        if (!tableElement) {
-          return;
-        }
-        tableElement.innerHTML = '';
-        View.drawUpdate(UI.getWinnersTemplate(response.winners), tableElement);
-        updatePaginationWinnerView();
-        tableEvent();
+        clickBtnPrev();
       }
 
       if (target.dataset.role === 'button-pagination-next') {
-        winnerStore.currentPage += 1;
-        const response = await API.getWinners(winnerStore.currentPage);
-        const tableElement = document.querySelector<HTMLTableElement>('.winners__table');
-        if (!tableElement) {
-          return;
-        }
-        tableElement.innerHTML = '';
-        View.drawUpdate(UI.getWinnersTemplate(response.winners), tableElement);
-        updatePaginationWinnerView();
-        tableEvent();
+        clickBtnNext();
       }
     }
   });
@@ -149,7 +230,9 @@ export async function init() {
   }
 
   winnerElement.innerHTML = '';
+
   const response = await API.getWinners(winnerStore.currentPage);
+
   winnerStore.totalWinners = response.totalWinners;
   winnerStore.totalPages =
     winnerStore.totalWinners % 10 === 0
@@ -160,8 +243,10 @@ export async function init() {
     UI.getHeadersWinnersTemplate(winnerStore.currentPage, winnerStore.totalWinners),
     winnerElement,
   );
+
   View.draw(UI.getWinnersTemplate(response.winners), winnerElement);
   View.draw(UI.getPaginationTemplate('pagination-winners'), winnerElement);
+
   updatePaginationWinnerView();
   initWinnersEvents();
 }
