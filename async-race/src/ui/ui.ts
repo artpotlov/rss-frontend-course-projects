@@ -94,7 +94,7 @@ export function getSettingsTemplate() {
         <button class="button button_size_md" data-role="button-update-submit" disabled>UPDATE</button>
       </div>
       <div class="settings__item">
-        <button class="button button_size_md" data-role="button-race" disabled>RACE</button>
+        <button class="button button_size_md" data-role="button-race">RACE</button>
         <button class="button button_size_md" data-role="button-reset" disabled>RESET</button>
         <button class="button button_size_md" data-role="button-generate-cars">GENERATE CARS</button>
       </div>
@@ -154,5 +154,11 @@ export function getTrackTemplate() {
       ${getHeadersGarageTemplate()}
       <div class="track__line">
     </section>
+  `;
+}
+
+export function getWinnerAlert(name: string, time: number) {
+  return `
+    <h1 class="alert">Winner ${name}. Time: ${time}s</h1>
   `;
 }
