@@ -1,5 +1,5 @@
 import * as UI from '../ui/ui';
-import { animation } from '../utils/animation';
+import * as Animation from '../utils/animation';
 import * as API from '../utils/api';
 import { getRandomCar } from '../utils/gen-random-car';
 import * as View from '../utils/view';
@@ -14,21 +14,26 @@ const garageStore = {
 function updateHeadTitlesView(currentPage?: number, totalCars?: number) {
   if (currentPage) {
     const currentPageElement = document.querySelector<HTMLElement>('.garage__subtitle');
+
     if (!currentPageElement) {
       return;
     }
+
     currentPageElement.textContent = `Page #${currentPage}`;
   }
+
   if (totalCars) {
     const totalCarsElement = document.querySelector<HTMLElement>('.garage__title');
+
     if (!totalCarsElement) {
       return;
     }
+
     totalCarsElement.textContent = `Garage (${totalCars})`;
   }
 }
 
-function updatePaginationView() {
+function updatePaginationView(block = false) {
   const garageElement = document.querySelector<HTMLElement>('.garage');
 
   if (!garageElement) {
@@ -65,6 +70,46 @@ function updatePaginationView() {
     prevButton.disabled = false;
     nextButton.disabled = false;
   }
+
+  if (garageStore.totalCars === 0) {
+    prevButton.disabled = true;
+    nextButton.disabled = true;
+  }
+
+  if (block) {
+    prevButton.disabled = true;
+    nextButton.disabled = true;
+  }
+}
+
+function updateRaceResetButtonVew(action: 'start' | 'reset') {
+  const garageElement = document.querySelector<HTMLElement>('.garage');
+
+  if (!garageElement) {
+    return;
+  }
+
+  const buttonRaceElement = garageElement.querySelector<HTMLButtonElement>(
+    '[data-role="button-race"]',
+  );
+  const buttonResetElement = garageElement.querySelector<HTMLButtonElement>(
+    '[data-role="button-reset"]',
+  );
+
+  if (!buttonRaceElement || !buttonResetElement) {
+    return;
+  }
+
+  if (action === 'start') {
+    buttonRaceElement.disabled = true;
+    buttonResetElement.disabled = false;
+  }
+
+  if (action === 'reset') {
+    buttonRaceElement.disabled = false;
+    buttonResetElement.disabled = true;
+    Animation.resetFastWinner();
+  }
 }
 
 async function updateTrackLine() {
@@ -76,20 +121,100 @@ async function updateTrackLine() {
 
   const response = await API.getCars(garageStore.currentPage);
   const trackLineElement = document.querySelector<HTMLElement>('.track__line');
+
   if (!trackLineElement) {
     return;
   }
+
   trackLineElement.innerHTML = '';
+
   response.cars.forEach((car) => {
     View.draw(UI.getRoadTemplate(car), trackLineElement);
   });
+
   garageStore.totalCars = response.totalCars;
   garageStore.totalPages =
     garageStore.totalCars % 7 === 0
       ? garageStore.totalCars / 7
       : Math.trunc(garageStore.totalCars / 7) + 1;
+
   updateHeadTitlesView(garageStore.currentPage, garageStore.totalCars);
   updatePaginationView();
+  updateRaceResetButtonVew('reset');
+}
+
+async function startEngine(id: number, race = false) {
+  const garageElement = document.querySelector<HTMLElement>('.garage');
+
+  if (!garageElement) {
+    return;
+  }
+
+  const roadCarTrack = garageElement.querySelector<HTMLElement>(
+    `.road__car-track[data-id="${id}"]`,
+  );
+  const startEngineElement = garageElement.querySelector<HTMLButtonElement>(
+    `[data-role="button-start-engine"][data-id="${id}"`,
+  );
+  const stopEngineElement = garageElement.querySelector<HTMLButtonElement>(
+    `[data-role="button-stop-engine"][data-id="${id}"]`,
+  );
+  const carElement = garageElement.querySelector<HTMLElement>(`.road__car[data-id="${id}"]`);
+
+  if (!roadCarTrack || !startEngineElement || !stopEngineElement || !carElement) {
+    return;
+  }
+
+  const engineParams = await API.startEngine(id);
+
+  if (engineParams.status === 200) {
+    startEngineElement.disabled = true;
+    stopEngineElement.disabled = false;
+
+    const duration = engineParams.params.distance / engineParams.params.velocity;
+
+    Animation.animationStart(carElement, roadCarTrack, id, duration);
+
+    const driveStatus = await API.driveEngine(id);
+
+    if (driveStatus === 500) {
+      Animation.animationStop(id);
+      return;
+    }
+
+    if (race) {
+      Animation.setWinner(id);
+      updatePaginationView();
+    }
+  }
+}
+
+async function stopEngine(id: number) {
+  const garageElement = document.querySelector<HTMLElement>('.garage');
+
+  if (!garageElement) {
+    return;
+  }
+
+  const startEngineElement = garageElement.querySelector<HTMLButtonElement>(
+    `[data-role="button-start-engine"][data-id="${id}"`,
+  );
+  const stopEngineElement = garageElement.querySelector<HTMLButtonElement>(
+    `[data-role="button-stop-engine"][data-id="${id}"]`,
+  );
+  const carElement = garageElement.querySelector<HTMLElement>(`.road__car[data-id="${id}"]`);
+
+  if (!startEngineElement || !stopEngineElement || !carElement) {
+    return;
+  }
+
+  const statusEngine = await API.stopEngine(id);
+
+  if (statusEngine === 200) {
+    Animation.animationReset(carElement, id);
+    startEngineElement.disabled = false;
+    stopEngineElement.disabled = true;
+  }
 }
 
 function roadEvent() {
@@ -117,7 +242,9 @@ function roadEvent() {
         if (garageStore.carId === -1 || !nameElement || !colorElement || !submitElement) {
           return;
         }
+
         const response = await API.getCar(garageStore.carId);
+
         nameElement.disabled = false;
         nameElement.value = response.name;
         colorElement.disabled = false;
@@ -135,60 +262,13 @@ function roadEvent() {
 
       if (target.dataset.role === 'button-start-engine') {
         if (target.dataset.id) {
-          const roadCarTrack = garageElement.querySelector<HTMLElement>(
-            `.road__car-track[data-id="${target.dataset.id}"]`,
-          );
-          const startEngineElement = garageElement.querySelector<HTMLButtonElement>(
-            `[data-role="button-start-engine"][data-id="${target.dataset.id}"`,
-          );
-          const stopEngineElement = garageElement.querySelector<HTMLButtonElement>(
-            `[data-role="button-stop-engine"][data-id="${target.dataset.id}"]`,
-          );
-          const carElement = garageElement.querySelector<HTMLElement>(
-            `.road__car[data-id="${target.dataset.id}"]`,
-          );
-
-          if (!roadCarTrack || !startEngineElement || !stopEngineElement || !carElement) {
-            return;
-          }
-
-          const engineParams = await API.startEngine(+target.dataset.id);
-
-          if (engineParams.status === 200) {
-            startEngineElement.disabled = true;
-            stopEngineElement.disabled = false;
-            const duration = engineParams.params.distance / engineParams.params.velocity;
-            animation('start', carElement, roadCarTrack, duration, +target.dataset.id);
-            const driveStatus = await API.driveEngine(+target.dataset.id);
-            if (driveStatus === 500) {
-              animation('stop', carElement, roadCarTrack, duration, +target.dataset.id);
-            }
-          }
+          startEngine(+target.dataset.id);
         }
       }
 
       if (target.dataset.role === 'button-stop-engine') {
         if (target.dataset.id) {
-          const startEngineElement = garageElement.querySelector<HTMLButtonElement>(
-            `[data-role="button-start-engine"][data-id="${target.dataset.id}"`,
-          );
-          const stopEngineElement = garageElement.querySelector<HTMLButtonElement>(
-            `[data-role="button-stop-engine"][data-id="${target.dataset.id}"]`,
-          );
-          const carElement = garageElement.querySelector<HTMLElement>(
-            `.road__car[data-id="${target.dataset.id}"]`,
-          );
-
-          if (!startEngineElement || !stopEngineElement || !carElement) {
-            return;
-          }
-
-          const statusEngine = await API.stopEngine(+target.dataset.id);
-          if (statusEngine === 200) {
-            animation('reset', carElement, carElement, 0, +target.dataset.id);
-            startEngineElement.disabled = false;
-            stopEngineElement.disabled = true;
-          }
+          stopEngine(+target.dataset.id);
         }
       }
     }
@@ -197,6 +277,7 @@ function roadEvent() {
 
 function paginationEvent() {
   const paginationElement = document.querySelector<HTMLElement>('[data-role="pagination-garage"]');
+
   paginationElement?.addEventListener('click', async ({ target }) => {
     if (target instanceof HTMLButtonElement) {
       if (target.dataset.role === 'button-pagination-prev') {
@@ -242,6 +323,7 @@ function createCar() {
       color: colorElement.value,
     });
   }
+
   updateTrackLine();
 }
 
@@ -268,20 +350,22 @@ function updateCarEvent() {
 
   submitElement.addEventListener('click', async () => {
     if (nameElement.value.trim().length === 0) {
-      alert('Empty car name');
       return;
     }
+
     await API.updateCar({
       id: garageStore.carId,
       name: nameElement.value,
       color: colorElement.value,
     });
+
     garageStore.carId = -1;
     nameElement.value = '';
     colorElement.value = '#FFFFFF';
     nameElement.disabled = true;
     colorElement.disabled = true;
     submitElement.disabled = true;
+
     updateTrackLine();
   });
 }
@@ -294,6 +378,7 @@ function createCarFormEvent() {
   }
 
   const submitButtonElement = garageElement.querySelector('[data-role="button-create-submit"]');
+
   submitButtonElement?.addEventListener('click', () => {
     createCar();
   });
@@ -318,6 +403,61 @@ function generateCarsEvent() {
   });
 }
 
+function raceEvent() {
+  const garageElement = document.querySelector<HTMLElement>('.garage');
+
+  if (!garageElement) {
+    return;
+  }
+
+  const raceButtonElement = garageElement.querySelector<HTMLButtonElement>(
+    '[data-role="button-race"]',
+  );
+
+  raceButtonElement?.addEventListener('click', async () => {
+    const cars = await API.getCars(garageStore.currentPage);
+    const carIds = cars.cars.map((car) => car.id);
+
+    updateRaceResetButtonVew('start');
+    updatePaginationView(true);
+
+    await Promise.all(
+      carIds.map(async (id) => {
+        await startEngine(id, true);
+        return 0;
+      }),
+    );
+  });
+}
+
+function resetEvent() {
+  const garageElement = document.querySelector<HTMLElement>('.garage');
+
+  if (!garageElement) {
+    return;
+  }
+
+  const resetButtonElement = garageElement.querySelector<HTMLButtonElement>(
+    '[data-role="button-reset"]',
+  );
+
+  resetButtonElement?.addEventListener('click', async () => {
+    const cars = await API.getCars(garageStore.currentPage);
+    const carIds = cars.cars.map((car) => car.id);
+
+    updateRaceResetButtonVew('reset');
+
+    await Promise.all(
+      carIds.map(async (id) => {
+        await stopEngine(id);
+        return 0;
+      }),
+    );
+
+    updatePaginationView();
+  });
+}
+
 function initGarageEvent() {
   updatePaginationView();
   paginationEvent();
@@ -325,13 +465,17 @@ function initGarageEvent() {
   generateCarsEvent();
   roadEvent();
   updateCarEvent();
+  raceEvent();
+  resetEvent();
 }
 
 export async function init() {
   const garageElement = document.querySelector<HTMLElement>('.garage');
+
   if (!garageElement) {
     return;
   }
+
   View.draw(UI.getSettingsTemplate(), garageElement);
   View.draw(UI.getTrackTemplate(), garageElement);
 
@@ -342,15 +486,20 @@ export async function init() {
   }
 
   const response = await API.getCars(garageStore.currentPage);
+
   garageStore.totalCars = response.totalCars;
   garageStore.totalPages =
     garageStore.totalCars % 7 === 0
       ? garageStore.totalCars / 7
       : Math.trunc(garageStore.totalCars / 7) + 1;
+
   updateHeadTitlesView(garageStore.currentPage, garageStore.totalCars);
+
   response.cars.forEach((car) => {
     View.draw(UI.getRoadTemplate(car), trackLineElement);
   });
+
   View.draw(UI.getPaginationTemplate(), garageElement);
+
   initGarageEvent();
 }
