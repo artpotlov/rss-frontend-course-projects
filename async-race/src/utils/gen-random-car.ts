@@ -26,16 +26,16 @@ export function getRandomCar(): IBaseCar {
     ['CX-30', '6', '3', 'CX-9'],
   ];
   const pallete = '0123456789ABCDF'.split('');
+
   const i = Math.floor(Math.random() * brands.length);
   const j = Math.floor(Math.random() * models[i].length);
+
   const randomName = `${brands[i]} ${models[i][j]}`;
-  const randomColor = `#${pallete[Math.floor(Math.random() * pallete.length)]}${
-    pallete[Math.floor(Math.random() * pallete.length)]
-  }${pallete[Math.floor(Math.random() * pallete.length)]}${
-    pallete[Math.floor(Math.random() * pallete.length)]
-  }${pallete[Math.floor(Math.random() * pallete.length)]}${
-    pallete[Math.floor(Math.random() * pallete.length)]
-  }`;
+  const randomColor = `#${new Array(6)
+    .fill(0)
+    .map(() => pallete[Math.floor(Math.random() * pallete.length)])
+    .join('')}`;
+
   return {
     name: randomName,
     color: randomColor,
