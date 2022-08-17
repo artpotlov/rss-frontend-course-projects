@@ -38,9 +38,26 @@ export interface IWinners {
   winners: IWinnerCar[];
 }
 
+export interface IEngine {
+  velocity: number;
+  distance: number;
+}
+
+export interface IStartEngine {
+  status: number;
+  params: IEngine;
+}
+
+export interface IFastWinner {
+  id: number;
+  time: number;
+}
+export interface IAnimation {
+  [key: number]: {
+    animationId: number;
+    time: number;
+  };
+}
+
 export type Sort = 'id' | 'wins' | 'time';
 export type Order = 'ASC' | 'DESC';
-
-export interface IAnimationID {
-  [key: number]: number;
-}
