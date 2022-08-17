@@ -59,6 +59,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .pagination {
+  margin: 1rem 0;
   display: flex;
   gap: 1rem;
 }
@@ -194,6 +195,19 @@ h1, h2, h3, h4, h5, h6 {
   padding: 0.5rem;
 }
 
+.winners__table td[data-role="thead-wins"], .winners__table td[data-role="thead-time"] {
+  cursor: pointer;
+}
+
 .winners__head {
   background-color: cadetblue;
+}
+
+.alert {
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+  z-index: 9999;
+  color: orange;
 }
