@@ -1,3 +1,5 @@
+import * as WinnersPage from './winners';
+
 export function togglePage(namePage: string) {
   const garagePage = document.querySelector<HTMLElement>('.garage');
   const winnerPage = document.querySelector<HTMLElement>('.winners');
@@ -6,13 +8,15 @@ export function togglePage(namePage: string) {
     return;
   }
 
-  if (namePage === 'garage') {
+  if (namePage === 'page-garage') {
     garagePage.style.display = 'block';
     winnerPage.style.display = 'none';
   }
 
-  if (namePage === 'winner') {
+  if (namePage === 'page-winner') {
     garagePage.style.display = 'none';
     winnerPage.style.display = 'block';
+
+    WinnersPage.init();
   }
 }
