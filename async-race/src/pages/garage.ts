@@ -243,10 +243,17 @@ function roadEvent() {
   trackLineElement?.addEventListener('click', async ({ target }) => {
     if (target instanceof HTMLButtonElement) {
       if (target.dataset.role === 'button-select-road') {
-        if (target.dataset.id) garageStore.carId = +target.dataset.id;
-        if (garageStore.carId === -1 || !nameElement || !colorElement || !submitElement) {
+        if (
+          !target.dataset.id ||
+          garageStore.carId === -1 ||
+          !nameElement ||
+          !colorElement ||
+          !submitElement
+        ) {
           return;
         }
+
+        garageStore.carId = +target.dataset.id;
 
         const response = await API.getCar(garageStore.carId);
 
@@ -259,24 +266,18 @@ function roadEvent() {
         submitElement.disabled = false;
       }
 
-      if (target.dataset.role === 'button-remove-road') {
-        if (target.dataset.id) {
-          const deleteCarId = +target.dataset.id;
-          await API.deleteCar(deleteCarId);
-          updateTrackLine();
-        }
+      if (target.dataset.role === 'button-remove-road' && target.dataset.id) {
+        const deleteCarId = +target.dataset.id;
+        await API.deleteCar(deleteCarId);
+        updateTrackLine();
       }
 
-      if (target.dataset.role === 'button-start-engine') {
-        if (target.dataset.id) {
-          startEngine(+target.dataset.id);
-        }
+      if (target.dataset.role === 'button-start-engine' && target.dataset.id) {
+        startEngine(+target.dataset.id);
       }
 
-      if (target.dataset.role === 'button-stop-engine') {
-        if (target.dataset.id) {
-          stopEngine(+target.dataset.id);
-        }
+      if (target.dataset.role === 'button-stop-engine' && target.dataset.id) {
+        stopEngine(+target.dataset.id);
       }
     }
   });
