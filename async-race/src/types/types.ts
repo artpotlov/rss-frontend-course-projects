@@ -33,11 +33,6 @@ export interface IWinnerCars {
   winners: IWinnerCar[];
 }
 
-export interface IWinners {
-  totalWinners: number;
-  winners: IWinnerCar[];
-}
-
 export interface IEngine {
   velocity: number;
   distance: number;
