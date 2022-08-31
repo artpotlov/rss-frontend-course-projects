@@ -58,6 +58,8 @@ async function clickTheadWins() {
     winnerStore.sort.type,
   );
 
+  if (!response) return;
+
   tableElement.innerHTML = '';
 
   View.drawUpdate(UI.getWinnersTemplate(response.winners), tableElement);
@@ -79,6 +81,8 @@ async function clickTheadTime() {
     winnerStore.sort.field,
     winnerStore.sort.type,
   );
+
+  if (!response) return;
 
   tableElement.innerHTML = '';
 
@@ -170,6 +174,8 @@ async function clickBtnPrev() {
 
   const response = await API.getWinners(winnerStore.currentPage);
 
+  if (!response) return;
+
   const tableElement = document.querySelector<HTMLTableElement>('.winners__table');
 
   if (!tableElement) {
@@ -187,6 +193,8 @@ async function clickBtnNext() {
   winnerStore.currentPage += 1;
 
   const response = await API.getWinners(winnerStore.currentPage);
+
+  if (!response) return;
 
   const tableElement = document.querySelector<HTMLTableElement>('.winners__table');
 
@@ -232,6 +240,8 @@ export async function init() {
   winnerElement.innerHTML = '';
 
   const response = await API.getWinners(winnerStore.currentPage);
+
+  if (!response) return;
 
   winnerStore.totalWinners = response.totalWinners;
   winnerStore.totalPages =

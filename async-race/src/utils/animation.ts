@@ -55,6 +55,8 @@ export async function setWinner(id: number) {
     fastWinner.time = Number(animationStore[id].time.toFixed(2));
     const car = await API.getCar(id);
 
+    if (!car) return;
+
     await API.updateWinner(fastWinner.id, fastWinner.time);
 
     View.draw(UI.getWinnerAlert(car.name, fastWinner.time), document.body);

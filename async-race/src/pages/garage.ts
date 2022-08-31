@@ -120,6 +120,9 @@ async function updateTrackLine() {
   }
 
   const response = await API.getCars(garageStore.currentPage);
+
+  if (!response) return;
+
   const trackLineElement = document.querySelector<HTMLElement>('.track__line');
 
   if (!trackLineElement) {
@@ -166,6 +169,8 @@ async function startEngine(id: number, race = false) {
   }
 
   const engineParams = await API.startEngine(id);
+
+  if (!engineParams) return;
 
   if (engineParams.status === 200) {
     startEngineElement.disabled = true;
@@ -244,6 +249,8 @@ function roadEvent() {
         }
 
         const response = await API.getCar(garageStore.carId);
+
+        if (!response) return;
 
         nameElement.disabled = false;
         nameElement.value = response.name;
@@ -416,6 +423,9 @@ function raceEvent() {
 
   raceButtonElement?.addEventListener('click', async () => {
     const cars = await API.getCars(garageStore.currentPage);
+
+    if (!cars) return;
+
     const carIds = cars.cars.map((car) => car.id);
 
     updateRaceResetButtonVew('start');
@@ -443,6 +453,9 @@ function resetEvent() {
 
   resetButtonElement?.addEventListener('click', async () => {
     const cars = await API.getCars(garageStore.currentPage);
+
+    if (!cars) return;
+
     const carIds = cars.cars.map((car) => car.id);
 
     updateRaceResetButtonVew('reset');
@@ -486,6 +499,8 @@ export async function init() {
   }
 
   const response = await API.getCars(garageStore.currentPage);
+
+  if (!response) return;
 
   garageStore.totalCars = response.totalCars;
   garageStore.totalPages =
