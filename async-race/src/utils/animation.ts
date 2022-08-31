@@ -44,10 +44,6 @@ export function animationReset(carElement: HTMLElement, id: number) {
   car.style.transform = 'translateX(0)';
 }
 
-export function getFastWinner() {
-  return fastWinner;
-}
-
 export function resetFastWinner() {
   fastWinner.id = -1;
   fastWinner.time = -1;
